@@ -1,0 +1,26 @@
+<svg id="locate-tile-off.svg" xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 28 28">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #b1aea8;
+        opacity: 0.1;
+      }
+
+      .cls-1, .cls-2, .cls-3 {
+        fill-rule: evenodd;
+      }
+
+      .cls-2, .cls-3 {
+        fill: #33332c;
+      }
+
+      .cls-2 {
+        opacity: 0.4;
+      }
+    </style>
+  </defs>
+  <path id="sizer" class="cls-1" d="M185,265h0.094v0.094H185V265Zm27.906,27.906H213V293h-0.094v-0.094Z" transform="translate(-185 -265)"/>
+  <path class="cls-2" d="M210,287l-11-4-11,4,9.575-19a1.613,1.613,0,0,1,1.432-.8,1.583,1.583,0,0,1,1.433.8Z" transform="translate(-185 -265)"/>
+  <path class="cls-3" d="M188,287l11-4,11,4-11,4Z" transform="translate(-185 -265)"/>
+  <path id="Rounded_Rectangle_12" data-name="Rounded Rectangle 12" class="cls-3" d="M212.3,269.12a0.992,0.992,0,0,1-.205,1.387l-25,18.569a0.991,0.991,0,0,1-1.182-1.591l25-18.57A0.992,0.992,0,0,1,212.3,269.12Z" transform="translate(-185 -265)"/>
+</svg>

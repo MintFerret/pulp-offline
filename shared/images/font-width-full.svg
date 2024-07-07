@@ -1,0 +1,20 @@
+<svg id="font-width-full.svg" xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 28 28">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #b1aea8;
+        opacity: 0.1;
+      }
+
+      .cls-1, .cls-2 {
+        fill-rule: evenodd;
+      }
+
+      .cls-2 {
+        fill: #33332c;
+      }
+    </style>
+  </defs>
+  <path id="sizer" class="cls-1" d="M117,186h0.094v0.094H117V186Zm27.906,27.906H145V214h-0.094v-0.094Z" transform="translate(-117 -186)"/>
+  <path id="_1" data-name="1" class="cls-2" d="M128.034,201.025l2.628-8.486,2.6,8.486h-5.228Zm-2.542,7,1.184-3.98h7.943l1.184,3.98h-2.061V211h9.264v-2.967h-1.542l-6.585-19.024h-7.654l-6.585,19.024h-1.628V211H127.7v-2.967h-2.206Z" transform="translate(-117 -186)"/>
+</svg>

@@ -1,0 +1,25 @@
+<svg id="voice-mute-on.svg" xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 28 28">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #b1aea8;
+        opacity: 0.1;
+      }
+
+      .cls-1, .cls-2, .cls-3 {
+        fill-rule: evenodd;
+      }
+
+      .cls-2, .cls-3 {
+        fill: #33332c;
+      }
+
+      .cls-2 {
+        opacity: 0.4;
+      }
+    </style>
+  </defs>
+  <path id="sizer" class="cls-1" d="M49,265h0.094v0.094H49V265Zm27.906,27.906H77V293H76.906v-0.094Z" transform="translate(-49 -265)"/>
+  <path class="cls-2" d="M69.823,288.5a0.982,0.982,0,0,1-.348.36c-0.3.18-1.183-.667-1.475-0.857l-7-5v-8l7.6-5.885a0.892,0.892,0,0,1,.936.029,1.052,1.052,0,0,1,.46.886V288A1.007,1.007,0,0,1,69.823,288.5ZM53,275h8v8H53a1,1,0,0,1-1-1v-6A1,1,0,0,1,53,275Z" transform="translate(-49 -265)"/>
+  <path id="Rounded_Rectangle_12" data-name="Rounded Rectangle 12" class="cls-3" d="M76.3,269.12a0.992,0.992,0,0,1-.2,1.387l-25,18.569a0.991,0.991,0,1,1-1.182-1.591l25-18.57A0.992,0.992,0,0,1,76.3,269.12Z" transform="translate(-49 -265)"/>
+</svg>

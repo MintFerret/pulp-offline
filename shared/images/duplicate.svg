@@ -1,0 +1,25 @@
+<svg id="duplicate.svg" xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 28 28">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #b1aea8;
+        opacity: 0.1;
+      }
+
+      .cls-1, .cls-3 {
+        fill-rule: evenodd;
+      }
+
+      .cls-2, .cls-3 {
+        fill: #33332c;
+      }
+
+      .cls-3 {
+        opacity: 0.4;
+      }
+    </style>
+  </defs>
+  <path id="sizer" class="cls-1" d="M49,118h0.094v0.094H49V118Zm27.906,27.906H77V146H76.906v-0.094Z" transform="translate(-49 -118)"/>
+  <rect id="_1" data-name="1" class="cls-2" x="10" y="2" width="16" height="16" rx="1" ry="1"/>
+  <path id="Rounded_Rectangle_5" data-name="Rounded Rectangle 5" class="cls-3" d="M68,138v5a1,1,0,0,1-1,1H52a1,1,0,0,1-1-1V128a1,1,0,0,1,1-1h5v9a2,2,0,0,0,2,2h9Z" transform="translate(-49 -118)"/>
+</svg>

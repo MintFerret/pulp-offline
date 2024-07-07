@@ -1,0 +1,20 @@
+<svg id="font-preview-map.svg" xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 28 28">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #b1aea8;
+        opacity: 0.1;
+      }
+
+      .cls-1, .cls-2 {
+        fill-rule: evenodd;
+      }
+
+      .cls-2 {
+        fill: #33332c;
+      }
+    </style>
+  </defs>
+  <path id="sizer" class="cls-1" d="M151,186h0.094v0.094H151V186Zm27.906,27.906H179V214h-0.094v-0.094Z" transform="translate(-151 -186)"/>
+  <path id="_1" data-name="1" class="cls-2" d="M154,189h5v5h-5v-5Zm19.5,0a2.5,2.5,0,1,1-2.5,2.5A2.5,2.5,0,0,1,173.5,189Zm-5.233,4.979-6.664.012,3.43-5.715ZM154,198h5v5h-5v-5Zm17,8h5v5h-5v-5Zm-5.969-8a2.5,2.5,0,1,1-2.5,2.5A2.5,2.5,0,0,1,165.031,198Zm-4.8,12.979-6.665.012L157,205.276Zm16.562-8-6.664.012,3.43-5.715ZM165.031,206a2.5,2.5,0,1,1-2.5,2.5A2.5,2.5,0,0,1,165.031,206Z" transform="translate(-151 -186)"/>
+</svg>

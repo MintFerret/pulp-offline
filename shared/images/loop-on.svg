@@ -1,0 +1,39 @@
+<svg id="loop-on.svg" xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 28 28">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #b1aea8;
+      }
+
+      .cls-1, .cls-2 {
+        fill-rule: evenodd;
+      }
+
+      .cls-1, .cls-6 {
+        opacity: 0.1;
+      }
+
+      .cls-2, .cls-3, .cls-4, .cls-5, .cls-6 {
+        fill: #33332c;
+      }
+
+      .cls-3 {
+        opacity: 0.7;
+      }
+
+      .cls-4 {
+        opacity: 0.5;
+      }
+
+      .cls-5 {
+        opacity: 0.3;
+      }
+    </style>
+  </defs>
+  <path id="sizer" class="cls-1" d="M83,197h0.094v0.094H83V197Zm27.906,27.906H111V225h-0.094v-0.094Z" transform="translate(-83 -197)"/>
+  <path class="cls-2" d="M104,218H90a7,7,0,0,1,0-14h3v-1.889a1.166,1.166,0,0,1,.522-0.977,0.991,0.991,0,0,1,1.04-.029l4.1,2.9H99v0.24l1.213,0.856a1.138,1.138,0,0,1,.561.969,1.15,1.15,0,0,1-.509,1L99,207.912V208H98.868l-4.239,2.834a0.994,0.994,0,0,1-1.063.016,1.091,1.091,0,0,1-.385-0.4A1.134,1.134,0,0,1,93,209.889V208H90a3,3,0,0,0,0,6h14a3,3,0,0,0,0-6v-4A7,7,0,0,1,104,218Z" transform="translate(-83 -197)"/>
+  <rect class="cls-3" x="20" y="7" width="1" height="4"/>
+  <rect class="cls-4" x="19" y="7" width="1" height="4"/>
+  <rect class="cls-5" x="18" y="7" width="1" height="4"/>
+  <rect class="cls-6" x="17" y="7" width="1" height="4"/>
+</svg>

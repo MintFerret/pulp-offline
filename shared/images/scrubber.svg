@@ -1,0 +1,16 @@
+<svg id="scrubber.svg" xmlns="http://www.w3.org/2000/svg" width="15" height="16" viewBox="0 0 15 16">
+  <defs>
+    <style>
+      .cls-1, .cls-2 {
+        fill: #33332c;
+        fill-rule: evenodd;
+      }
+
+      .cls-2 {
+        opacity: 0.1;
+      }
+    </style>
+  </defs>
+  <path id="Layer_1" data-name="Layer 1" class="cls-1" d="M9,16H7L1,9V4A2,2,0,0,1,3,2H13a2,2,0,0,1,2,2V9Z"/>
+  <path id="sizer" class="cls-2" d="M15.99,15.99H16V16H15.99V15.99ZM0,0H0.01V0.01H0V0Z"/>
+</svg>

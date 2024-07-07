@@ -1,0 +1,79 @@
+@charset "utf-8";
+
+/* Color Definitions */
+:root
+{
+        --black: #000000; /* UNUSED */
+        --darkest-gray: #1d1c18;
+        --psd-darkest-gray: #212223; /* html bg, bottom dark section */
+        --screen-black: #312f28; /* submit button text, navbar text, black section bg, yellow/gray section text, nav text, idea text, game card border, game card text, developer/credits button text, */
+        --dark-gray: #57554e;
+        --mid-gray: #7e7b75;
+        --psd-dark-gray: #7a8085; /* header/nav bg */
+        --psd-mid-gray: #64676c;
+        --screen-white: #b1afa8; /* credits button bg, specs h3 text */
+        --psd-light-gray: #bbb; /* no-spoilers bg, game card bg, idea cloud bg */
+        --lightest-gray: #f5f5f5;
+        --psd-lightest-gray: #efefef; /* buy page bg  */
+        --white: #ffffff; /* html text, purple/dark section text, buy button text, button text, form border */
+
+        --brand-yellow: #ffc833; /* black section text, yellow section bg, spec icon, form label, submit bg, */
+        --device-yellow: #fbc651; /* UNUSED */
+        --red: #ef5023; /* Global messages with error class */
+        --readable-red: #ff6c42;
+        --muted-red: #e88984; /* UNUSED */
+        --tomato-red: #ff004e;
+        --orange: #ef5023;
+        --purple: #6c00ff; /* purple section bg, buy button bg, help button bg form input, global messages */
+        --muted-purple: #9d70db; /* UNUSED */
+        --blue: #306fb6; /* UNUSED */
+        --muted-blue: #5e99d0; /* UNUSED */
+        --light-blue: #a0d1ff; 
+        --green: #2c7d46; /* UNUSED */
+        --muted-green: #60be83; /* UNUSED */
+        --light-green: #90f8b7;
+        
+        --aqua: #00a88a;
+        --aqua-dark: #127866;
+        --aqua-light: #21c6a9;
+}
+
+/* P3 variants */
+@supports (color: color(display-p3 1 1 1 / 1))
+{
+        :root
+        {
+                --black: color(display-p3 0 0 0);
+                --screen-black: color(display-p3 0.192 0.184 0.157);
+                --screen-white: color(display-p3 0.694 0.686 0.659);
+                --white: color(display-p3 1 1 1);
+                --dark-gray: color(display-p3 0.341 0.333 0.306);
+                --mid-gray: color(display-p3 0.492 0.480 0.457);
+                --lightest-gray: color(display-p3 0.957 0.957 0.957);
+
+                --psd-darkest-gray: color(display-p3 0.129 0.133 0.137);
+                --psd-mid-gray: color(display-p3 0.392 0.404 0.424);
+                --psd-dark-gray: color(display-p3 0.478 0.502 0.522);
+                --psd-light-gray: color(display-p3 0.91 0.894 0.855);
+                --psd-lightest-gray: color(display-p3 0.937 0.937 0.937);
+
+                --brand-yellow: color(display-p3 1 0.784 0.2);
+                --device-yellow: color(display-p3 0.984 0.776 0.318);
+                --red: color(display-p3 0.937 0.314 0.137);
+                --readable-red: color(display-p3 1 0.423 0.259);
+                --dev-red: color(display-p3 0.937 0.314 0.137);
+                --muted-red: color(display-p3 0.91 0.537 0.518);
+                --tomato-red: color(display-p3 1 0 .3046);
+                --orange: color(display-p3 .937 .318 .137);
+                --purple: color(display-p3 0.424 0 1 / 1);
+                --muted-purple: color(display-p3 0.616 0.439 0.859);
+                --blue: color(display-p3 0.188 0.435 0.714);
+                --muted-blue: color(display-p3 0.369 0.6 0.816);
+                --green: color(display-p3 0.173 0.49 0.275);
+                --muted-green: color(display-p3 0.376 0.745 0.514);
+                
+                --aqua: color(display-p3 0.292 0.649 0.547);
+                --aqua-dark: color(display-p3 0.216 0.463 0.403);
+                --aqua-light: color(display-p3 0.37 0.765 0.667);
+        }
+}

@@ -1,0 +1,20 @@
+<svg id="view-grid.svg" xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 28 28">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #b1aea8;
+        opacity: 0.1;
+      }
+
+      .cls-1, .cls-2 {
+        fill-rule: evenodd;
+      }
+
+      .cls-2 {
+        fill: #33332c;
+      }
+    </style>
+  </defs>
+  <path id="sizer" class="cls-1" d="M151,118h0.094v0.094H151V118Zm27.906,27.906H179V146h-0.094v-0.094Z" transform="translate(-151 -118)"/>
+  <path id="_1" data-name="1" class="cls-2" d="M179,136v2h-8v8h-2v-8h-8v8h-2v-8h-8v-2h8v-8h-8v-2h8v-8h2v8h8v-8h2v8h8v2h-8v8h8Zm-10-8h-8v8h8v-8Z" transform="translate(-151 -118)"/>
+</svg>

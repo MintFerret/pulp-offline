@@ -1,0 +1,25 @@
+<svg id="layers-exits.svg" xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 28 28">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #b1aea8;
+        opacity: 0.1;
+      }
+
+      .cls-1, .cls-2, .cls-3 {
+        fill-rule: evenodd;
+      }
+
+      .cls-2, .cls-3 {
+        fill: #33332c;
+      }
+
+      .cls-2 {
+        opacity: 0.3;
+      }
+    </style>
+  </defs>
+  <path id="sizer" class="cls-1" d="M151,129h0.094v0.094H151V129Zm27.906,27.906H179V157h-0.094v-0.094Z" transform="translate(-151 -129)"/>
+  <path class="cls-2" d="M156,141s1.733-1.842,3-2a10.391,10.391,0,0,1,5,1v9l-8,5V141Z" transform="translate(-151 -129)"/>
+  <path id="c" class="cls-3" d="M166,154h-2V144a4,4,0,0,0-8,0v10h-2V144a5.973,5.973,0,0,1,3.006-5.171l-0.028,0s7.395-4.517,8.862-5.417A8.173,8.173,0,0,1,170,132a6,6,0,0,1,6,6v10Z" transform="translate(-151 -129)"/>
+</svg>

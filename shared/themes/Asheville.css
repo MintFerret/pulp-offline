@@ -1,0 +1,16 @@
+.theme {
+	/* default */
+	--ui-color-primary: var(--ui-color-playdate-black); /* text */
+	--ui-color-secondary: var(--ui-color-playdate-white); /* background */
+	--ui-color-tertiary: var(--ui-color-secondary); /* text on frame */
+	--ui-color-key: var(--ui-color-playdate-yellow); /* active */
+	--ui-color-call: var(--ui-color-secondary); /* interactive */
+	--ui-color-void: black; /* frame */
+	
+	--ui-color-primary-alpha-10: rgba(50,47,39,0.1);
+	--ui-color-primary-alpha-20: rgba(50,47,39,0.2);
+	--ui-color-primary-alpha-50: rgba(50,47,39,0.5);
+	--ui-color-secondary-alpha-50: rgba(177,174,168,0.5);
+	--ui-color-key-alpha-50: #d8b370; /* 50% key on #b1aea8 (specifically, not --ui-color-secondary), pre-baked */
+	--ui-color-call-alpha-50: var(--ui-color-secondary-alpha-50);
+}

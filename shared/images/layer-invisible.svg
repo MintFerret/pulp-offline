@@ -1,0 +1,25 @@
+<svg id="layer-invisible.svg" xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 28 28">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #b1aea8;
+        opacity: 0.1;
+      }
+
+      .cls-1, .cls-2, .cls-3 {
+        fill-rule: evenodd;
+      }
+
+      .cls-2, .cls-3 {
+        fill: #33332c;
+      }
+
+      .cls-2 {
+        opacity: 0.4;
+      }
+    </style>
+  </defs>
+  <path id="sizer" class="cls-1" d="M219,152h0.094v0.094H219V152Zm27.906,27.906H247V180h-0.094v-0.094Z" transform="translate(-219 -152)"/>
+  <path id="_2" data-name="2" class="cls-2" d="M233,174.148c-5.784,0-10.688-3.191-12.5-7.633,1.812-4.443,6.716-7.633,12.5-7.633s10.688,3.19,12.5,7.633C243.688,170.957,238.783,174.148,233,174.148Zm0-13.914a6.261,6.261,0,1,1-6.247,6.261A6.254,6.254,0,0,1,233,160.234Zm0,2.747a3.49,3.49,0,1,1-3.461,3.489A3.475,3.475,0,0,1,233,162.981Z" transform="translate(-219 -152)"/>
+  <path id="Rounded_Rectangle_13" data-name="Rounded Rectangle 13" class="cls-3" d="M244.3,155.171a1,1,0,0,1,0,1.414L223.085,177.8a1,1,0,1,1-1.414-1.414l21.213-21.213A1,1,0,0,1,244.3,155.171Z" transform="translate(-219 -152)"/>
+</svg>

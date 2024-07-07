@@ -1,0 +1,21 @@
+<svg id="return.svg" xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 28 28">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #b1aea8;
+        opacity: 0.1;
+      }
+
+      .cls-1, .cls-2 {
+        fill-rule: evenodd;
+      }
+
+      .cls-2 {
+        fill: #33332c;
+      }
+    </style>
+  </defs>
+  <path id="sizer" class="cls-1" d="M348.906,197H349v0.094h-0.094V197ZM321,224.906h0.094V225H321v-0.094Z" transform="translate(-321 -197)"/>
+  <path id="_1" data-name="1" class="cls-2" d="M326,202.816A1.748,1.748,0,0,1,327.667,201h1.666A1.748,1.748,0,0,1,331,202.816v16.366A1.747,1.747,0,0,1,329.333,221h-1.666A1.747,1.747,0,0,1,326,219.182V202.816Z" transform="translate(-321 -197)"/>
+  <path id="Rounded_Rectangle_14" data-name="Rounded Rectangle 14" class="cls-2" d="M333.493,211.858A0.952,0.952,0,0,1,333,211a0.962,0.962,0,0,1,.553-0.828l9.928-9.094a1.1,1.1,0,0,1,1.021.028,0.974,0.974,0,0,1,.5.844v18.071a0.882,0.882,0,0,1-.193.471,1,1,0,0,1-.379.343,1.1,1.1,0,0,1-1.045-.016Z" transform="translate(-321 -197)"/>
+</svg>

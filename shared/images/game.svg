@@ -1,0 +1,32 @@
+<svg id="pulp-game.svg" xmlns="http://www.w3.org/2000/svg" width="28.593" height="28.531" viewBox="0 0 28.593 28.531">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #b1aea8;
+        opacity: 0.1;
+      }
+
+      .cls-1, .cls-2, .cls-3 {
+        fill-rule: evenodd;
+      }
+
+      .cls-2, .cls-3 {
+        fill: #33332c;
+      }
+
+      .cls-2 {
+        opacity: 0.4;
+      }
+
+      .cls-3 {
+        stroke: #33332c;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+        stroke-width: 1px;
+      }
+    </style>
+  </defs>
+  <path id="sizer" class="cls-1" d="M355,163h0.094v0.094H355V163h0Zm27.906,27.906H383V191h-0.094v-0.094h0Z" transform="translate(-354.438 -163)"/>
+  <path id="sparkles" class="cls-2" d="M376.7,164.843l2.3,1.877,2.923-.563-1.09,2.767,1.426,2.6-2.969-.166-2.041,2.169-0.745-2.87-2.688-1.257,2.508-1.608Zm-19.28-1.268,1.638,0.453,1.409-.967,0.061,1.7,1.347,1.031-1.6.6-0.576,1.6-1.05-1.331-1.7-.039,0.951-1.418Zm18.835,20.34,2.336-.1L380,181.96l0.831,2.176,2.211,0.766-1.822,1.45-0.042,2.324-1.957-1.28-2.237.67,0.613-2.241Z" transform="translate(-354.438 -163)"/>
+  <path id="Polygon_9" data-name="Polygon 9" class="cls-3" d="M370.117,166.952L370.1,175.71l7.626,3.725-8.119,2.894-1.275,8.692-5-6.969-8.414,1.647,5.031-7.2-3.925-7.673,8.1,2.518Z" transform="translate(-354.438 -163)"/>
+</svg>

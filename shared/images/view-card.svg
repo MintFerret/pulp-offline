@@ -1,0 +1,17 @@
+<svg id="view-card.svg" xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 28 28">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #b1aea8;
+        fill-rule: evenodd;
+        opacity: 0.1;
+      }
+
+      .cls-2 {
+        fill: #33332c;
+      }
+    </style>
+  </defs>
+  <path id="sizer" class="cls-1" d="M83,231h0.094v0.094H83V231Zm27.906,27.906H111V259h-0.094v-0.094Z" transform="translate(-83 -231)"/>
+  <rect id="_1" data-name="1" class="cls-2" x="2" y="6" width="24" height="16"/>
+</svg>

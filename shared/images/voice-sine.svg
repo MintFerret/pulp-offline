@@ -1,0 +1,20 @@
+<svg id="voice-sine.svg" xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 28 28">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #b1aea8;
+        opacity: 0.1;
+      }
+
+      .cls-1, .cls-2 {
+        fill-rule: evenodd;
+      }
+
+      .cls-2 {
+        fill: #33332c;
+      }
+    </style>
+  </defs>
+  <path id="sizer" class="cls-1" d="M185,197h0.094v0.094H185V197Zm27.906,27.906H213V225h-0.094v-0.094Z" transform="translate(-185 -197)"/>
+  <path class="cls-2" d="M208,222H190a2,2,0,0,1-2-2V207h0.061a3.772,3.772,0,0,1-.061-0.5c0-2.485,2.462-4.5,5.5-4.5s5.5,2.015,5.5,4.5a3.614,3.614,0,0,1-.062.5H199v-2.5c0,2.485,2.462,4.5,5.5,4.5h0c3.038,0,5.5-2.015,5.5-4.5V209h0v11A2,2,0,0,1,208,222Zm-8.938-18a3.614,3.614,0,0,0-.062.5V204h0.062ZM210,204v0.5a3.772,3.772,0,0,0-.061-0.5H210Z" transform="translate(-185 -197)"/>
+</svg>

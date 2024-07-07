@@ -1,0 +1,20 @@
+<svg id="voice-sawtooth.svg" xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 28 28">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #b1aea8;
+        opacity: 0.1;
+      }
+
+      .cls-1, .cls-2 {
+        fill-rule: evenodd;
+      }
+
+      .cls-2 {
+        fill: #33332c;
+      }
+    </style>
+  </defs>
+  <path id="sizer" class="cls-1" d="M253,197h0.094v0.094H253V197Zm27.906,27.906H281V225h-0.094v-0.094Z" transform="translate(-253 -197)"/>
+  <path class="cls-2" d="M256,222h11V200Zm11,0h11V200Z" transform="translate(-253 -197)"/>
+</svg>

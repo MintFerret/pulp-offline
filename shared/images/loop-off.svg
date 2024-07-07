@@ -1,0 +1,44 @@
+<svg id="loop-off.svg" xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 28 28">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #b1aea8;
+      }
+
+      .cls-1, .cls-2, .cls-7 {
+        fill-rule: evenodd;
+      }
+
+      .cls-1, .cls-5 {
+        opacity: 0.1;
+      }
+
+      .cls-2, .cls-3, .cls-4, .cls-5, .cls-6, .cls-7 {
+        fill: #33332c;
+      }
+
+      .cls-2 {
+        opacity: 0.4;
+      }
+
+      .cls-3 {
+        opacity: 0.3;
+      }
+
+      .cls-4 {
+        opacity: 0.2;
+      }
+
+      .cls-6 {
+        opacity: 0.05;
+      }
+    </style>
+  </defs>
+  <path id="sizer" class="cls-1" d="M117,197h0.094v0.094H117V197Zm27.906,27.906H145V225h-0.094v-0.094Z" transform="translate(-117 -197)"/>
+  <path class="cls-2" d="M138,218H124a7,7,0,0,1,0-14h4v-1.889a1.166,1.166,0,0,1,.522-0.977,0.99,0.99,0,0,1,1.039-.029l5.652,3.991a1.138,1.138,0,0,1,.561.969,1.15,1.15,0,0,1-.509,1l-5.635,3.768a1,1,0,0,1-1.064.016,1.092,1.092,0,0,1-.385-0.4,1.133,1.133,0,0,1-.181-0.559V208h-4a3,3,0,0,0,0,6h14a3,3,0,0,0,0-6v-4A7,7,0,0,1,138,218Z" transform="translate(-117 -197)"/>
+  <rect class="cls-3" x="20" y="7" width="1" height="4"/>
+  <rect class="cls-4" x="19" y="7" width="1" height="4"/>
+  <rect class="cls-5" x="18" y="7" width="1" height="4"/>
+  <rect class="cls-6" x="17" y="7" width="1" height="4"/>
+  <path id="Rounded_Rectangle_12" data-name="Rounded Rectangle 12" class="cls-7" d="M142.712,199.284a0.99,0.99,0,0,1,0,1.4L120.7,222.707a0.991,0.991,0,1,1-1.4-1.4l22.017-22.022A0.992,0.992,0,0,1,142.712,199.284Z" transform="translate(-117 -197)"/>
+</svg>

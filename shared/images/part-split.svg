@@ -1,0 +1,26 @@
+<svg id="part-split.svg" xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 28 28">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #b1aea8;
+        opacity: 0.1;
+      }
+
+      .cls-1, .cls-2 {
+        fill-rule: evenodd;
+      }
+
+      .cls-2, .cls-3 {
+        fill: #33332c;
+      }
+
+      .cls-3 {
+        opacity: 0.4;
+      }
+    </style>
+  </defs>
+  <path id="sizer" class="cls-1" d="M15,231h0.094v0.094H15V231Zm27.906,27.906H43V259H42.906v-0.094Z" transform="translate(-15 -231)"/>
+  <path class="cls-2" d="M19,252a0.883,0.883,0,0,1-1-.636V238.636A0.883,0.883,0,0,1,19,238h1.729L28,252" transform="translate(-15 -231)"/>
+  <path class="cls-2" d="M30,252l7.2-14H39a0.883,0.883,0,0,1,1,.636v12.728A0.883,0.883,0,0,1,39,252" transform="translate(-15 -231)"/>
+  <rect class="cls-3" x="13" y="3" width="2" height="22"/>
+</svg>

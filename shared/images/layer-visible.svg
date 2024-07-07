@@ -1,0 +1,20 @@
+<svg id="layer-visible.svg" xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 28 28">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #b1aea8;
+        opacity: 0.1;
+      }
+
+      .cls-1, .cls-2 {
+        fill-rule: evenodd;
+      }
+
+      .cls-2 {
+        fill: #33332c;
+      }
+    </style>
+  </defs>
+  <path id="sizer" class="cls-1" d="M185,152h0.094v0.094H185V152Zm27.906,27.906H213V180h-0.094v-0.094Z" transform="translate(-185 -152)"/>
+  <path id="_1" data-name="1" class="cls-2" d="M199,174.148c-5.784,0-10.688-3.191-12.5-7.633,1.812-4.443,6.716-7.633,12.5-7.633s10.688,3.19,12.5,7.633C209.688,170.957,204.783,174.148,199,174.148Zm0-13.914a6.261,6.261,0,1,1-6.247,6.261A6.254,6.254,0,0,1,199,160.234Zm0,2.747a3.49,3.49,0,1,1-3.461,3.489A3.475,3.475,0,0,1,199,162.981Z" transform="translate(-185 -152)"/>
+</svg>

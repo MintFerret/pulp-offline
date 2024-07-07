@@ -1,0 +1,25 @@
+<svg id="exit-to-room.svg" xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 28 28">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #b1aea8;
+        opacity: 0.1;
+      }
+
+      .cls-1, .cls-2, .cls-3 {
+        fill-rule: evenodd;
+      }
+
+      .cls-2, .cls-3 {
+        fill: #33332c;
+      }
+
+      .cls-2 {
+        opacity: 0.4;
+      }
+    </style>
+  </defs>
+  <path id="sizer" class="cls-1" d="M287,186h0.094v0.094H287V186Zm27.906,27.906H315V214h-0.094v-0.094Z" transform="translate(-287 -186)"/>
+  <path class="cls-2" d="M295,193h12v18l-3-6h-6l-3,6V193Z" transform="translate(-287 -186)"/>
+  <path class="cls-3" d="M307,211V199a6,6,0,0,0-12,0v12h-5V189h22v22h-5Zm-6-15a3,3,0,0,1,3,3v6h-6v-6A3,3,0,0,1,301,196Z" transform="translate(-287 -186)"/>
+</svg>

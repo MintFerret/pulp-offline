@@ -1,0 +1,20 @@
+<svg id="font-preview-custom.svg" xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 28 28">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #b1aea8;
+        opacity: 0.1;
+      }
+
+      .cls-1, .cls-2 {
+        fill-rule: evenodd;
+      }
+
+      .cls-2 {
+        fill: #33332c;
+      }
+    </style>
+  </defs>
+  <path id="sizer" class="cls-1" d="M219,186h0.094v0.094H219V186Zm27.906,27.906H247V214h-0.094v-0.094Z" transform="translate(-219 -186)"/>
+  <path id="_1" data-name="1" class="cls-2" d="M235,205a1.764,1.764,0,0,0,2,2h3v4h-3a6.337,6.337,0,0,1-4-1.77,6.312,6.312,0,0,1-4,1.77h-3v-4h3a1.764,1.764,0,0,0,2-2V195a1.764,1.764,0,0,0-2-2h-3v-4h3a6.312,6.312,0,0,1,4,1.77,6.337,6.337,0,0,1,4-1.77h3v4h-3a1.764,1.764,0,0,0-2,2v10Z" transform="translate(-219 -186)"/>
+</svg>

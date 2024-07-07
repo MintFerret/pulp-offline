@@ -1,0 +1,25 @@
+<svg id="view-grid-invisible.svg" xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 28 28">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #b1aea8;
+        opacity: 0.1;
+      }
+
+      .cls-1, .cls-2, .cls-3 {
+        fill-rule: evenodd;
+      }
+
+      .cls-2, .cls-3 {
+        fill: #33332c;
+      }
+
+      .cls-2 {
+        opacity: 0.4;
+      }
+    </style>
+  </defs>
+  <path id="sizer" class="cls-1" d="M218.984,118h0.094v0.094h-0.094V118Zm27.907,27.906h0.093V146h-0.093v-0.094Z" transform="translate(-219 -118)"/>
+  <path id="s" class="cls-2" d="M247,136v2h-8v8h-2v-8h-8v8h-2v-8h-8v-2h8v-8h-8v-2h8v-8h2v8h8v-8h2v8h8v2h-8v8h8Zm-10-8h-8v8h8v-8Z" transform="translate(-219 -118)"/>
+  <path id="Rounded_Rectangle_12" data-name="Rounded Rectangle 12" class="cls-3" d="M244.207,121.293a0.99,0.99,0,0,1,0,1.4l-21.018,21.022a0.991,0.991,0,1,1-1.4-1.4l21.018-21.022A0.99,0.99,0,0,1,244.207,121.293Z" transform="translate(-219 -118)"/>
+</svg>

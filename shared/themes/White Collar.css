@@ -1,0 +1,16 @@
+.theme {
+	/* default */
+	--ui-color-primary: #312f28; /* text */
+	--ui-color-secondary:#efefef; /* background */
+	--ui-color-key: var(--ui-color-playdate-yellow); /* active */
+	--ui-color-call: var(--ui-color-secondary); /* interactive */
+	--ui-color-void: white; /* frame */
+	
+	--ui-color-primary-alpha-10: rgba(49,47,40,0.1);
+	--ui-color-primary-alpha-20: rgba(49,47,40,0.2);
+	--ui-color-primary-alpha-50: rgba(49,47,40,0.5);
+	--ui-color-secondary-alpha-50: rgba(239,239,239,0.5);
+	--ui-color-key-alpha-50: #d8b370; /* 50% key on #b1aea8 (specifically, not --ui-color-secondary), pre-baked */
+	--ui-color-call-alpha-50: var(--ui-color-secondary-alpha-50);
+	--ui-color-tertiary: var(--ui-color-primary); /* text on frame */
+}

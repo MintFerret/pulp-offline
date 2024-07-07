@@ -1,0 +1,25 @@
+<svg id="view-walls-invisible.svg" xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 28 28">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #b1aea8;
+        opacity: 0.1;
+      }
+
+      .cls-1, .cls-2, .cls-3 {
+        fill-rule: evenodd;
+      }
+
+      .cls-2, .cls-3 {
+        fill: #33332c;
+      }
+
+      .cls-2 {
+        opacity: 0.3;
+      }
+    </style>
+  </defs>
+  <path id="sizer" class="cls-1" d="M185,95h0.094v0.094H185V95Zm27.906,27.906H213V123h-0.094v-0.094Z" transform="translate(-185 -95)"/>
+  <path id="_1" data-name="1" class="cls-2" d="M200,120v-6h11v6H200Zm-13-14h24v6H187v-6Zm13-8h11v6H200V98Zm-13,0h11v6H187V98Zm11,22H187v-6h11v6Z" transform="translate(-185 -95)"/>
+  <path id="Rounded_Rectangle_12" data-name="Rounded Rectangle 12" class="cls-3" d="M210.712,97.284a0.991,0.991,0,0,1,0,1.4L188.7,120.707a0.991,0.991,0,0,1-1.4-1.4L209.31,97.284A0.992,0.992,0,0,1,210.712,97.284Z" transform="translate(-185 -95)"/>
+</svg>

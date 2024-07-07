@@ -1,0 +1,20 @@
+<svg id="voice-mute-off.svg" xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 28 28">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #b1aea8;
+        opacity: 0.1;
+      }
+
+      .cls-1, .cls-2 {
+        fill-rule: evenodd;
+      }
+
+      .cls-2 {
+        fill: #33332c;
+      }
+    </style>
+  </defs>
+  <path id="sizer" class="cls-1" d="M15,265h0.094v0.094H15V265Zm27.906,27.906H43V293H42.906v-0.094Z" transform="translate(-15 -265)"/>
+  <path class="cls-2" d="M37.823,288.5a0.982,0.982,0,0,1-.348.36c-0.3.18-1.183-.667-1.475-0.857l-7-5v-8l7.6-5.885a0.892,0.892,0,0,1,.936.029,1.052,1.052,0,0,1,.46.886V288A1.007,1.007,0,0,1,37.823,288.5ZM21,275h8v8H21a1,1,0,0,1-1-1v-6A1,1,0,0,1,21,275Z" transform="translate(-15 -265)"/>
+</svg>

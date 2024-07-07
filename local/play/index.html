@@ -1,0 +1,669 @@
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, viewport-fit=cover" />
+
+    <title>Playdate Pulp - WebPlayer</title>
+    
+<link rel="stylesheet" type="text/css" href="colors/colors.css" />
+<link rel="stylesheet" href="pulp/css/player.css" />
+<link rel="stylesheet" id="theme-stylesheet" href="../../shared/themes/Asheville.css" />
+<script type="text/javascript">
+    var urls = {
+		root: "/",
+		static: "pulp/",
+		shared: "shared/",
+	};
+	var currentGameId = "local";
+    var request = new XMLHttpRequest();
+   request.open("GET", "../../games/local/data", false);
+   request.send(null)
+    var currentGameData = JSON.parse(request.responseText);
+</script>
+<script src="../../shared/js/Local.js" type="text/javascript" charset="utf-8"></script>
+<script src="pulp/js/Voice.js" type="text/javascript" charset="utf-8"></script>
+<script src="shared/js/shared.js" type="text/javascript" charset="utf-8"></script>
+<script src="pulp/js/player/bridge.js" type="text/javascript" charset="utf-8"></script>
+<script src="pulp/js/player/runtime.js" type="text/javascript" charset="utf-8"></script>
+
+</head>
+<body class="nojs pulp theme scrollable " data-mode="dark">
+
+	<div id="compatibility-banner">Playdate Pulp works best in desktop versions of WebKit (eg. Safari or Chrome) <span class="icon clear-search"></span></div>
+    <main id="main" role="main" class="container">   
+
+<div id="ui">
+	<div id="game" class="playdate"></div>
+	<div id="controller">
+		<div id="dpad">
+			<button title="Press up (up arrow key)" id="btn-up"><span>Up</span></button>
+			<button title="Press down (down arrow key)" id="btn-down"><span>Down</span></button>
+			<button title="Press left (left arrow key)" id="btn-left"><span>Left</span></button>
+			<button title="Press right (right arrow key)" id="btn-right"><span>Right</span></button>
+		</div>
+		<div id="face">
+			<button title="Press B (A key)" id="btn-b"><span>B</span></button>
+			<button title="Press A (S key)" id="btn-a"><span>A</span></button>
+		</div>
+		
+		<div id="kb">
+			<span class="kb-key kb-arrow" id="kb-left">◀</span>
+			<span class="kb-key kb-arrow" id="kb-up">▲</span>
+			<span class="kb-key kb-arrow" id="kb-down">▼</span>
+			<span class="kb-key kb-arrow" id="kb-right">▶</span>
+			<span class="kb-key" id="kb-b">A</span>
+			<span class="kb-key" id="kb-a">S</span>
+		</div>
+	</div>
+	<div id="extras">
+		<div id="extras-volume" class="extras-well">
+			
+            <button id="button-mute" class="icon mute" title="Toggle Mute">Mute</button>
+			
+            <label id="label-volume" title="Volume"><input id="volume" type="range" min=0 max=100 value=50 /></label>
+            
+			<a id="screenshot-anchor" download="screenshot.png" href="">
+                <button id="screenshot-button" class="icon" title="Download Screenshot" aria-label="Download Screenshot">Screenshot</button>
+            </a>
+            
+            <button id="extras-toggle" class="icon expand" title="Expand" aria-label="Expand">Expand</button>
+            
+		</div>
+		<div id="extras-input" class="extras-well">
+			<div id="unit-motion" class="extras-unit">
+				<label id="label-motion" for="motion">Accelerometer:</label>
+				<div id="motion-wrap" class="radial-wrap"><div id="motion" class="radial"><div id="motion-ring" class="radial-ring"></div><div id="motion-center" class="radial-center"></div><div id="motion-arm" class="radial-arm"></div><div id="motion-handle" class="radial-handle"></div></div></div>
+			</div>
+			<div id="unit-crank" class="extras-unit">
+				<label id="label-crank" for="crank">Crank:</label> <label><input id="crank-docked" type="checkbox" checked class="icon" /> Docked</label>
+				<div id="crank-wrap" class="radial-wrap"><div id="crank" class="radial"><div id="crank-ring" class="radial-ring"></div><div id="crank-center" class="radial-center"></div><div id="crank-arm" class="radial-arm"></div><div id="crank-handle" class="radial-handle"></div></div></div>
+			</div>
+		</div>        
+	</div>
+</div>
+
+<pre id="dump"></pre>
+
+<script>
+	applyOverrides();
+	
+	window.name = 'player';
+	
+	if (localStorage.getItem('expandExtras')=='true') one('#extras').classList.add('expanded');
+	bind('#extras-toggle', 'click', function(event) {
+		var extras = one('#extras').classList;
+		extras.toggle('expanded');
+		localStorage.setItem('expandExtras', extras.contains('expanded'));
+	});
+
+    bind("#screenshot-anchor", 'click', function(e) {
+        const anchor = e.currentTarget;
+        const img = one("#game img");
+        function getScaledScreenshotImageData() {
+            var canvas = Renderer.bitmap.canvas;
+            var width = 400;
+            var height = 240;
+            
+            var scaled = document.createElement('canvas');
+            scaled.width = width;
+            scaled.height = height;
+
+            var ctx = scaled.getContext('2d');
+            ctx.imageSmoothingEnabled = false;
+            ctx.drawImage(
+                canvas,
+                0,
+                0,
+                canvas.width,
+                canvas.height,
+                0,
+                0,
+                width,
+                height
+            );
+            
+            var dataURL = scaled.toDataURL();
+            return dataURL.replace(/^data:image\/png/,'data:application/octet-stream');
+        }
+        anchor.setAttribute('href', getScaledScreenshotImageData());
+        // continue with the action.
+    });
+
+	var docked = one('#crank-docked');
+	var isSimulatorPaused = false;
+	function togglePaused(event) {
+		// event.target.webkitRequestFullscreen(); // TODO: this kinda works, we lose Playdate colors though...
+
+		isSimulatorPaused = !isSimulatorPaused;
+		Playhead.togglePause(isSimulatorPaused);
+		
+		if (isSimulatorPaused) one('#game').classList.add('paused');
+		else one('#game').classList.remove('paused');
+		
+		if (event) event.stopPropagation();
+		
+		crankDocked = docked.checked;
+	}
+	bind('#game', 'click', togglePaused);
+
+    	function updateTheme() {
+		document.getElementById('theme-stylesheet').href = '../../'+ urls.shared + 'themes/'+(localStorage.getItem('activeTheme') || 'Asheville')+'.css';
+	}
+	updateTheme();
+    
+	// use editor volume
+	var volumeNode = one('#volume');
+	function updateVolume() {
+		var volume = localStorage.getItem('playerVolume');
+		volume = (volume==null) ? 0.5 : parseFloat(volume);
+		Playhead.setVolume(volume);
+		volumeNode.value = volume * volumeNode.max;
+	}
+	updateVolume();
+	function setPlayerVolume(volume) {
+		if (volume==0) return mute();
+		Playhead.setVolume(volume);
+		localStorage.setItem('playerVolume', volume);
+	}
+	bind(volumeNode, 'input', function(event) {
+		unmute();
+		setPlayerVolume(event.target.value / event.target.max);
+	});
+
+	var isMuted = false;
+	function updateMute() {
+		isMuted = localStorage.getItem('muteVolume')=='true';
+		if (isMuted) {
+			document.body.classList.add('muted');
+			Playhead.setVolume(0); // don't save to localStorage
+			volumeNode.value = 0;
+		}
+		else {
+			document.body.classList.remove('muted');
+			updateVolume();
+		}
+	}
+	updateMute();
+	function mute() {
+		if (isMuted) return;
+		isMuted = !isMuted;
+		Playhead.setVolume(0); // don't save to localStorage
+		volumeNode.value = 0;
+		document.body.classList.add('muted');
+	}
+	function unmute() {
+		if (!isMuted) return;
+		isMuted = !isMuted;
+		localStorage.setItem('muteVolume', isMuted);
+		document.body.classList.remove('muted');
+	}
+	bind('#button-mute', 'click', function(event) {
+		isMuted = !isMuted;
+		localStorage.setItem('muteVolume', isMuted);
+		updateMute();
+	});
+	
+	bind(window, 'storage', function(event) {
+        if (event.key=='activeTheme') updateTheme();
+		if (event.key=='playerVolume') updateVolume();
+		if (event.key=='muteVolume') updateMute();
+	});
+	
+	var padCache = {
+		UP: false,
+		DOWN: false,
+		LEFT: false,
+		RIGHT: false,
+		A: false,
+		B: false,
+		X: 0.0,
+		Y: 0.0,
+		C: 0.0,
+	}
+	function getGamepad(i) {
+		return !!navigator.getGamepads ? navigator.getGamepads()[i] : null;
+	}
+	
+	// TODO: refactor this
+	var ButtonToName = [
+		null,
+		'a',
+		'b',
+		'up',
+		'down',
+		'left',
+		'right',
+	];
+	function onButton(event, which, isPressed) {
+		if (isSimulatorPaused) return;
+		
+		captureButton(which, isPressed);
+		one('#btn-'+ButtonToName[which]).classList[isPressed?'add':'remove']('active');
+		one('#kb-'+ButtonToName[which]).classList[isPressed?'add':'remove']('active');
+		if (event) event.preventDefault();
+	}
+	
+	function updateGamepad() {
+		var pad = getGamepad(0);
+		if (pad) {
+			var freshUP = pad.buttons[14].pressed;
+			var freshDOWN = pad.buttons[15].pressed;
+			var freshLEFT = pad.buttons[16].pressed;
+			var freshRIGHT = pad.buttons[17].pressed;
+			var freshA = pad.buttons[2].pressed;
+			var freshB = pad.buttons[1].pressed;
+		
+			if (padCache.UP!=freshUP) {
+				padCache.UP = freshUP;
+				onButton(null, Button.UP, freshUP);
+			}
+			if (padCache.DOWN!=freshDOWN) {
+				padCache.DOWN = freshDOWN;
+				onButton(null, Button.DOWN, freshDOWN);
+			}
+			if (padCache.LEFT!=freshLEFT) {
+				padCache.LEFT = freshLEFT;
+				onButton(null, Button.LEFT, freshLEFT);
+			}
+			if (padCache.RIGHT!=freshRIGHT) {
+				padCache.RIGHT = freshRIGHT;
+				onButton(null, Button.RIGHT, freshRIGHT);
+			}
+			if (padCache.A!=freshA) {
+				padCache.A = freshA;
+				onButton(null, Button.A, freshA);
+			}
+			if (padCache.B!=freshB) {
+				padCache.B = freshB;
+				onButton(null, Button.B, freshB);
+			}
+		
+			var freshX = pad.axes[2].toFixed(4);
+			var freshY = pad.axes[3].toFixed(4);
+			if (Math.abs(freshX)<0.025 && Math.abs(freshY)<0.025) {
+				freshX = 0;
+				freshY = 0;
+			}
+		
+			crankRelative = 0;
+			if (padCache.X!=freshX || padCache.Y!=freshY) {
+				padCache.X = freshX;
+				padCache.Y = freshY;
+			
+				// NOTE: S = 0 W = 90 N = 180 E = 270
+				var freshC = Math.atan2(freshY,freshX) * (180 / Math.PI);
+				freshC += 90;
+				if (freshC<0) freshC += 360;
+			
+				if (padCache.C!=freshC) {
+					crankAbsolute = freshC;
+					crankRelative = freshC - padCache.C;
+					padCache.C = freshC;
+					// print('XY change', freshX, freshY, freshC);
+				}
+			}
+		
+			// TODO: add accelerometer?
+		}
+	}
+	// accelerometer
+	var motionNode = one('#motion');
+	var simulatedMotionAngle = 180;
+	var simulatedMotionX = 0.0;
+	var simulatedMotionY = 1.0;
+	var simulatedMotionZ = 0.0;
+	function simulateMotion(event) {
+		var rect = motionNode.parentNode.getBoundingClientRect();
+		var cx = event.clientX - rect.left;
+		var cy = event.clientY - rect.top;
+		
+		var len = rect.width / 2;
+		
+		var x = cx - (crankNode.offsetWidth / 2);
+		var y = cy - (crankNode.offsetHeight / 2);
+
+		var angle = Math.atan2(y,x) * (180 / Math.PI);
+		angle += 90;
+		if (angle<0) angle += 360;
+		else if (angle>360) angle -= 360;
+
+		var distance =Math.hypot(x, y);
+		var radius = distance / len;
+		if (radius>1) radius = 1;
+		
+		var a = angle + 180;
+		if (a<0) a += 360;
+		else if (a>0) a -= 360;
+		
+		var mx = -radius * Math.sin(Math.PI * 2 * a / 360);
+		var my =  radius * Math.cos(Math.PI * 2 * a / 360);
+		var mz =  1-radius;
+		
+		// var precision = 10000;
+		// mx = Math.round(mx * precision) / precision;
+		// my = Math.round(my * precision) / precision;
+		// mz = Math.round(mz * precision) / precision;
+		// angle = Math.round(angle * precision) / precision;
+		
+		simulatedMotionAngle = angle;
+		simulatedMotionX = mx;
+		simulatedMotionY = my;
+		simulatedMotionZ = mz;
+		
+	}
+	var motionWrap = one('#motion-wrap');
+	function startListeningMotion() {
+		simulateMotion(event);
+		bind(document, 'mousemove', simulateMotion);
+		bind(document, 'mouseup', stopListeningMotion);
+		document.body.classList.add('motioning');
+	}
+	function stopListeningMotion() {
+		unbind(document, 'mousemove', simulateMotion);
+		// simulatedMotionAngle = 0;
+		document.body.classList.remove('motioning');
+	}
+	bind(motionWrap, 'mousedown', startListeningMotion);
+
+	function updateSimulatedMotion() {
+		if (isSimulatorPaused) return;
+		
+		motionX = simulatedMotionX;
+		motionY = simulatedMotionY;
+		motionZ = simulatedMotionZ;
+		
+		motionNode.style.transform = 'rotate('+simulatedMotionAngle+'deg)';
+		motionNode.style.setProperty('--ui-radial-radius', (50 * (1-simulatedMotionZ))+'%');
+	}
+	
+	// crank
+	var crankNode = one('#crank');
+	var simulatedCrankAngle = 0;
+	var lastSimulatedCrankAngle = 0;
+	function getSimulatedCrankAngle(event) {
+		var rect = crankNode.parentNode.getBoundingClientRect();
+		var cx = event.clientX - rect.left;
+		var cy = event.clientY - rect.top;
+		
+		var x = cx - (crankNode.offsetWidth / 2);
+		var y = cy - (crankNode.offsetHeight / 2);
+		var angle = Math.atan2(y,x) * (180 / Math.PI);
+		angle += 90;
+		if (angle<0) angle += 360;
+		return angle;
+	}
+	function simulateCrank(event) {
+		simulatedCrankAngle = getSimulatedCrankAngle(event);
+	}
+	var crankWrap = one('#crank-wrap');
+	function startListening() {
+		docked.checked = crankDocked = false;
+		lastSimulatedCrankAngle = getSimulatedCrankAngle(event);
+		simulateCrank(event);
+		bind(document, 'mousemove', simulateCrank);
+		bind(document, 'mouseup', stopListening);
+		document.body.classList.add('cranking');
+	}
+	function stopListening() {
+		unbind(document, 'mousemove', simulateCrank);
+		simulatedCrankAngle = 0;
+		lastSimulatedCrankAngle = 0;
+		document.body.classList.remove('cranking');
+	}
+	bind(crankWrap, 'mousedown', startListening);
+
+	function updateSimulatedCrank() {
+		if (isSimulatorPaused || crankDocked) return;
+		
+		crankRelative = simulatedCrankAngle - lastSimulatedCrankAngle;
+		crankAbsolute += crankRelative;
+
+		if (crankAbsolute<0) crankAbsolute += 360;
+		else if (crankAbsolute>=360) crankAbsolute -= 360;
+		
+		if (crankRelative>180) crankRelative -= 360;
+		else if (crankRelative<-180) crankRelative += 360;
+		
+		crankNode.style.transform = 'rotate('+crankAbsolute+'deg)';
+		lastSimulatedCrankAngle = simulatedCrankAngle;
+	}
+	function dockCrank() {
+		crankRelative = 0;
+		crankAbsolute = 0;
+		lastSimulatedCrankAngle = simulatedCrankAngle = 0;
+		crankNode.style.transform = 'rotate('+crankAbsolute+'deg)';
+	}
+	if (crankDocked) dockCrank();
+	bind(docked, 'change', function(event) {
+		if (isSimulatorPaused) return;
+		crankDocked = event.target.checked;
+		if (crankDocked) dockCrank();
+	});
+	
+	bind(window, 'wheel', function(event) {
+		var clamp = 30;
+		var delta = Math.max(-clamp, Math.min(clamp, event.deltaY));
+		simulatedCrankAngle += (delta / 60) * (180 / Math.PI);
+		event.preventDefault(); // browsers ignore this now?
+	});
+	
+	setupContext('game');
+	
+	var isFullscreen = false;
+	bind('#game', 'webkitfullscreenchange', function(event) {
+		isFullscreen = document.webkitFullscreenElement!=null;
+		if (!isFullscreen) event.target.classList.remove('fullscreen');
+	});
+	
+	var down = [];
+	bind(window, 'keydown', function(event) {
+		if (event.keyCode==32) togglePaused();
+
+		if (down[event.keyCode]) return;
+		down[event.keyCode] = true;
+
+		switch (event.keyCode) {
+		case 37:
+			onButton(event, Button.LEFT, true);
+			break;
+		case 38:
+			onButton(event, Button.UP, true);
+			break;
+		case 39:
+			onButton(event, Button.RIGHT, true);
+			break;
+		case 40:
+			onButton(event, Button.DOWN, true);
+			break;
+		case 83: // s = A
+			onButton(event, Button.A, true);
+			break;
+		case 65: // a = B
+			onButton(event, Button.B, true);
+			break;
+		}
+	});
+	bind(window, 'keyup', function(event) {
+		down[event.keyCode] = false;
+
+		switch (event.keyCode) {
+		case 37:
+			onButton(event, Button.LEFT, false);
+			break;
+		case 38:
+			onButton(event, Button.UP, false);
+			break;
+		case 39:
+			onButton(event, Button.RIGHT, false);
+			break;
+		case 40:
+			onButton(event, Button.DOWN, false);
+			break;
+		case 83: // s = A
+			onButton(event, Button.A, false);
+			break;
+		case 65: // a = B
+			onButton(event, Button.B, false);
+			break;
+        case 68: // d = enable crank
+            var docked = one('#crank-docked');
+            break;    
+        case 80: // p = random pallete
+                var randomBlack = "#" + Math.floor(Math.random() * 16777215).toString(16);
+                var randomWhite = "#" + Math.floor(Math.random() * 16777215).toString(16);
+                document.documentElement.style.setProperty('--ui-color-playdate-black', randomBlack);
+                document.documentElement.style.setProperty('--ui-color-playdate-white', randomWhite);
+            break;
+		case 70: // f = toggle fullscreen
+			isFullscreen = !isFullscreen;
+			if (isFullscreen) {
+				var gameNode = one('#game');
+				gameNode.classList.add('fullscreen');
+				gameNode.webkitRequestFullscreen();
+				event.preventDefault();
+			}
+			break;
+		}
+	});
+
+	var btnDown = {};
+	var btnToButton = {
+		'btn-up': Button.UP,
+		'btn-down': Button.DOWN,
+		'btn-left': Button.LEFT,
+		'btn-right': Button.RIGHT,
+		'btn-a': Button.A,
+		'btn-b': Button.B,
+	};
+	bind('#controller button', 'mousedown', function(event) {
+		var id = event.target.id;
+		if (isset(btnDown[id])) return;
+		
+		onButton(event, btnToButton[id], true);
+		btnDown[id] = true;
+	});
+	bind(document, 'mouseup', function(event) {
+		var id = event.target.id;
+		if (id && btnDown[id]) { // it's one of our buttons
+			onButton(event, btnToButton[id], false);
+			delete btnDown[id];
+		}
+		else { // drifted off mousedown target so clear all?
+			for (var id in btnDown) {
+				onButton(event, btnToButton[id], false);
+				delete btnDown[id];
+			}
+		}
+	});
+
+	function loadData(onload) {
+		data = JSON.parse(JSON.stringify(currentGameData));
+		loadStore();
+		onload();
+	}
+	
+	var dumpNode = one('#dump');
+	function updateDump() {
+		var oldPrint = print
+		var output = '';
+		print = function(str) {
+			output = str;
+		};
+		ActionDump();
+		print = oldPrint;
+		
+		// isolate just the game vars
+		output = output.replace(/^(=+|EVENT|GAME|STORE)\n/gm,'');
+		output = output.replace(/^CONFIG.+/gms,'');
+		output = output.replace(/^\t+/gm,'');
+		
+		output = output.trim().split(/\n/);
+		output.sort();
+		output = output.join('\n');
+		
+		dumpNode.innerHTML = output;
+	}
+	
+	function onUpdate() {
+		if (isSimulatorPaused || fatalError || !Playhead.isReady) return;
+	
+		updateGamepad();
+		updateSimulatedCrank();
+		updateSimulatedMotion();
+		beforeUpdate();
+		update();
+		// updateDump();
+		afterUpdate();
+		render();
+		renderContext();
+	}
+	
+	init();
+	
+	loadData(onDataReady);
+	
+	onUpdate();
+	
+	// simply fires off a message 20 times a second but
+	// continues while browser or tab is in background
+	// unlike setInterval() on the main thread
+	var ticker = URL.createObjectURL(new Blob(['setInterval(postMessage, 50, 0)'], {type: 'application/javascript'}));
+	(new Worker(ticker)).onmessage = onUpdate;
+	
+</script>
+
+
+    </main>
+    
+
+    
+<footer id="panic-footer">
+    <ul>
+        <li>
+            &copy; Panic
+        </li>
+        <li>
+            Playdate is a registered trademark of Panic
+        </li>
+    </ul>
+</footer>
+
+
+
+
+
+    <script type="text/javascript">
+        // Generate the static url here and pass it as a JS var so scripts can use it as a prefix.
+        var STATIC_URL = "https://static-cdn.play.date/static/";
+    </script>
+    <script src="js/init.js"></script>
+    
+    <script>
+        // Search form
+        
+        let searchField = document.getElementById('nav-search-field');
+
+        function searchShow()
+        {
+            // searchField.classList.add('expanded');
+            searchField.className = 'expanded';
+            searchField.focus();
+        }
+
+        function searchHide()
+        {
+            searchField.className = '';
+            searchField.blur();
+        }
+        
+        if (searchField) {
+            searchField.addEventListener('click', searchShow);
+            searchField.addEventListener('focus', searchShow);
+            searchField.addEventListener('blur', searchHide);
+        }
+    </script>
+    
+
+
+</body>
+</html>

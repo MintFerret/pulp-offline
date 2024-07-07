@@ -1,0 +1,26 @@
+<svg id="flip-h.svg" xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 28 28">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #b1aea8;
+        opacity: 0.1;
+      }
+
+      .cls-1, .cls-2, .cls-3 {
+        fill-rule: evenodd;
+      }
+
+      .cls-2, .cls-3 {
+        fill: #33332c;
+      }
+
+      .cls-3 {
+        opacity: 0.4;
+      }
+    </style>
+  </defs>
+  <path id="sizer" class="cls-1" d="M253,118h0.094v0.094H253V118Zm27.906,27.906H281V146h-0.094v-0.094Z" transform="translate(-253 -118)"/>
+  <path id="Rounded_Rectangle_2" data-name="Rounded Rectangle 2" class="cls-2" d="M267,119a1,1,0,1,1-1,1A1,1,0,0,1,267,119Zm0,4a1,1,0,1,1-1,1A1,1,0,0,1,267,123Zm0,4a1,1,0,1,1-1,1A1,1,0,0,1,267,127Zm0,4a1,1,0,1,1-1,1A1,1,0,0,1,267,131Zm0,4a1,1,0,1,1-1,1A1,1,0,0,1,267,135Zm0,4a1,1,0,1,1-1,1A1,1,0,0,1,267,139Zm0,4a1,1,0,1,1-1,1A1,1,0,0,1,267,143Z" transform="translate(-253 -118)"/>
+  <path id="Rounded_Rectangle_4" data-name="Rounded Rectangle 4" class="cls-2" d="M262.167,138c-1.73,0-1.566-3-3.667-3s-1.937,7-3.667,7A1.755,1.755,0,0,1,253,140V124a1.755,1.755,0,0,1,1.833-2c1.73,0,1.566,7,3.667,7s1.937-3,3.667-3A1.755,1.755,0,0,1,264,128v8A1.755,1.755,0,0,1,262.167,138Z" transform="translate(-253 -118)"/>
+  <path id="Rounded_Rectangle_3" data-name="Rounded Rectangle 3" class="cls-3" d="M279.167,142c-1.73,0-1.566-7-3.667-7s-1.937,3-3.667,3A1.755,1.755,0,0,1,270,136v-8a1.755,1.755,0,0,1,1.833-2c1.73,0,1.566,3,3.667,3s1.937-7,3.667-7A1.755,1.755,0,0,1,281,124v16A1.755,1.755,0,0,1,279.167,142Z" transform="translate(-253 -118)"/>
+</svg>

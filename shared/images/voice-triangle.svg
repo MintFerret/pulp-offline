@@ -1,0 +1,20 @@
+<svg id="voice-triangle.svg" xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 28 28">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #b1aea8;
+        opacity: 0.1;
+      }
+
+      .cls-1, .cls-2 {
+        fill-rule: evenodd;
+      }
+
+      .cls-2 {
+        fill: #33332c;
+      }
+    </style>
+  </defs>
+  <path id="sizer" class="cls-1" d="M287,197h0.094v0.094H287V197Zm27.906,27.906H315V225h-0.094v-0.094Z" transform="translate(-287 -197)"/>
+  <path class="cls-2" d="M290,222h22l-11-22Z" transform="translate(-287 -197)"/>
+</svg>

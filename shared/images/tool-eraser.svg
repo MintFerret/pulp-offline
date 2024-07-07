@@ -1,0 +1,25 @@
+<svg id="icon-eraser.svg" xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 28 28">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #b1aea8;
+        opacity: 0.1;
+      }
+
+      .cls-1, .cls-2, .cls-3 {
+        fill-rule: evenodd;
+      }
+
+      .cls-2, .cls-3 {
+        fill: #33332c;
+      }
+
+      .cls-3 {
+        opacity: 0.4;
+      }
+    </style>
+  </defs>
+  <path id="sizer" class="cls-1" d="M83,93h0.094v0.094H83V93Zm27.906,27.906H111V121h-0.094v-0.094Z" transform="translate(-83 -93)"/>
+  <path class="cls-2" d="M107,106l-6,6v-5a1.953,1.953,0,0,0-2-2H89.984c1.632-1.625,3.594-3.579,5.016-5a6.869,6.869,0,0,1,5-2h6a2.141,2.141,0,0,1,2,2v4A3.279,3.279,0,0,1,107,106Z" transform="translate(-83 -93)"/>
+  <path class="cls-3" d="M87.5,109h8a1.5,1.5,0,0,1,1.5,1.5v4a1.5,1.5,0,0,1-1.5,1.5h-8a1.5,1.5,0,0,1-1.5-1.5v-4A1.5,1.5,0,0,1,87.5,109ZM98,115v-5a1.909,1.909,0,0,0-2-2c-2.966,0-9.047.016-9.047,0.016S88.3,106.682,89.987,105H99a1.949,1.949,0,0,1,2,2v5Z" transform="translate(-83 -93)"/>
+</svg>

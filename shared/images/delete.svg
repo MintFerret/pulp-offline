@@ -1,0 +1,20 @@
+<svg id="delete.svg" xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 28 28">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #b1aea8;
+        opacity: 0.1;
+      }
+
+      .cls-1, .cls-2 {
+        fill-rule: evenodd;
+      }
+
+      .cls-2 {
+        fill: #33332c;
+      }
+    </style>
+  </defs>
+  <path id="sizer" class="cls-1" d="M83,118h0.094v0.094H83V118Zm27.906,27.906H111V146h-0.094v-0.094Z" transform="translate(-83 -118)"/>
+  <path id="_" data-name="`" class="cls-2" d="M106.475,128H87.5a1.5,1.5,0,0,1,0-3h18.975A1.5,1.5,0,0,1,106.475,128Zm-6.212-6.127a0.959,0.959,0,0,0-.95-0.873H94.75a1.041,1.041,0,0,0-1.013.9L93,124H91l1-3a2.188,2.188,0,0,1,2.3-2h5.429a2.137,2.137,0,0,1,2.249,2L103,124h-2Zm3.721,22.264a0.939,0.939,0,0,1-1,.863h-12a0.94,0.94,0,0,1-1-.863L88.426,130h17.118Z" transform="translate(-83 -118)"/>
+</svg>

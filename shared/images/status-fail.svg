@@ -1,0 +1,20 @@
+<svg id="status-fail.svg" xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 28 28">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #b1aea8;
+        opacity: 0.1;
+      }
+
+      .cls-1, .cls-2 {
+        fill-rule: evenodd;
+      }
+
+      .cls-2 {
+        fill: #ad133b;
+      }
+    </style>
+  </defs>
+  <path id="sizer" class="cls-1" d="M253,152h0.094v0.094H253V152Zm27.906,27.906H281V180h-0.094v-0.094Z" transform="translate(-253 -152)"/>
+  <path id="_1" data-name="1" class="cls-2" d="M267,176a10,10,0,1,1,10-10A10,10,0,0,1,267,176Zm4.707-13.306a0.991,0.991,0,0,0-1.4-1.4L267,164.6l-3.306-3.307a0.991,0.991,0,0,0-1.4,1.4L265.6,166l-3.311,3.313a0.991,0.991,0,0,0,1.4,1.4L267,167.4l3.311,3.312a0.991,0.991,0,0,0,1.4-1.4L268.4,166Z" transform="translate(-253 -152)"/>
+</svg>

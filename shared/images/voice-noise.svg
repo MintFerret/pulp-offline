@@ -1,0 +1,20 @@
+<svg id="voice-noise.svg" xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 28 28">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #b1aea8;
+        opacity: 0.1;
+      }
+
+      .cls-1, .cls-2 {
+        fill-rule: evenodd;
+      }
+
+      .cls-2 {
+        fill: #33332c;
+      }
+    </style>
+  </defs>
+  <path id="sizer" class="cls-1" d="M287,231h0.094v0.094H287V231Zm27.906,27.906H315V259h-0.094v-0.094Z" transform="translate(-287 -231)"/>
+  <path class="cls-2" d="M310,257v-3h-3v3h-6v-3h3v-3h3v-3h3v3h3v6h-3Zm-12-6v-6h-3v6h-3v3h3v-3h3v6h-9v-9h3v-3h-3v-3h3v-3h-3v-6h3v3h3v3h3v3h3v-3h-3v-3h6v-3h3v3h3v3h-6v6h-3v3h3v3h-6Zm-3-18h3v3h-3v-3Zm18,0v3h-3v-3h3Zm0,9v3h-6v-3h3v-3h3v3Z" transform="translate(-287 -231)"/>
+</svg>

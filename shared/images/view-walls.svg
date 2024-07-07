@@ -1,0 +1,20 @@
+<svg id="view-walls.svg" xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 28 28">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #b1aea8;
+        opacity: 0.1;
+      }
+
+      .cls-1, .cls-2 {
+        fill-rule: evenodd;
+      }
+
+      .cls-2 {
+        fill: #33332c;
+      }
+    </style>
+  </defs>
+  <path id="sizer" class="cls-1" d="M117,95h0.094v0.094H117V95Zm27.906,27.906H145V123h-0.094v-0.094Z" transform="translate(-117 -95)"/>
+  <path id="_1" data-name="1" class="cls-2" d="M132,120v-6h11v6H132Zm-13-14h24v6H119v-6Zm13-8h11v6H132V98Zm-13,0h11v6H119V98Zm11,22H119v-6h11v6Z" transform="translate(-117 -95)"/>
+</svg>

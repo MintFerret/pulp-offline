@@ -1,0 +1,26 @@
+<svg id="pencil.svg" xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 28 28">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #b1aea8;
+        opacity: 0.1;
+      }
+
+      .cls-1, .cls-2, .cls-3 {
+        fill-rule: evenodd;
+      }
+
+      .cls-2, .cls-3 {
+        fill: #33332c;
+      }
+
+      .cls-3 {
+        opacity: 0.4;
+      }
+    </style>
+  </defs>
+  <path id="sizer" class="cls-1" d="M390,129h0.094v0.094H390V129Zm27.906,27.906H418V157h-0.094v-0.094Z" transform="translate(-390 -129)"/>
+  <path class="cls-2" d="M399.354,147.643a6.635,6.635,0,0,0-2.628-1.614l14.165-14.166a1,1,0,0,1,1.414,0l2.829,2.828a1,1,0,0,1,0,1.415l-14.166,14.165A6.647,6.647,0,0,0,399.354,147.643Z" transform="translate(-390 -129)"/>
+  <path class="cls-3" d="M400.992,150.248A49.506,49.506,0,0,1,393,154s2.583-6.819,3.749-8a2.775,2.775,0,0,1,4.243,0A3.457,3.457,0,0,1,400.992,150.248Z" transform="translate(-390 -129)"/>
+  <path id="Rounded_Rectangle_28" data-name="Rounded Rectangle 28" class="cls-2" d="M396.336,150.66a3.332,3.332,0,0,1,.738,1.665c-0.949.379-1.739,0.751-1.739,0.751C394.4,153.438,393,154,393,154c-0.02-.02.585-1.45,0.921-2.338,0,0,.368-0.792.744-1.742A3.552,3.552,0,0,1,396.336,150.66Z" transform="translate(-390 -129)"/>
+</svg>

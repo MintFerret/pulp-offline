@@ -1,0 +1,25 @@
+<svg id="flip-v.svg" xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 28 28">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #b1aea8;
+        opacity: 0.1;
+      }
+
+      .cls-1, .cls-2, .cls-3 {
+        fill-rule: evenodd;
+      }
+
+      .cls-2, .cls-3 {
+        fill: #33332c;
+      }
+
+      .cls-3 {
+        opacity: 0.4;
+      }
+    </style>
+  </defs>
+  <path id="sizer" class="cls-1" d="M287,118h0.094v0.094H287V118Zm27.906,27.906H315V146h-0.094v-0.094Z" transform="translate(-287 -118)"/>
+  <path id="Rounded_Rectangle_2" data-name="Rounded Rectangle 2" class="cls-2" d="M313,131a1,1,0,1,1-1,1A1,1,0,0,1,313,131Zm-4,0a1,1,0,1,1-1,1A1,1,0,0,1,309,131Zm-4,0a1,1,0,1,1-1,1A1,1,0,0,1,305,131Zm-4,0a1,1,0,1,1-1,1A1,1,0,0,1,301,131Zm-4,0a1,1,0,1,1-1,1A1,1,0,0,1,297,131Zm-4,0a1,1,0,1,1-1,1A1,1,0,0,1,293,131Zm-4,0a1,1,0,1,1-1,1A1,1,0,0,1,289,131Zm12-13q-8.251,0-4.126,7.335t8.252,0Q309.253,118,301,118Z" transform="translate(-287 -118)"/>
+  <path id="Polygon_1" data-name="Polygon 1" class="cls-3" d="M301,146q-8.251,0-4.126-7.335t8.252,0Q309.253,146,301,146Z" transform="translate(-287 -118)"/>
+</svg>

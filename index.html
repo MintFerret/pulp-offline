@@ -1,0 +1,795 @@
+<html lang="en" class="internal pulp apps" id="" data-authenticated="true" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, viewport-fit=cover" />
+
+    <title>Playdate Pulp - Web editor</title>
+    
+<link rel="stylesheet" type="text/css" href="pulp/css/colors.css" />
+    <link rel="stylesheet" id="theme-stylesheet" href="shared/themes/Asheville.css" />
+<link type="text/css" rel="stylesheet" href="pulp/css/pulp.css" />
+
+
+    <script type="text/javascript">
+        window.roomDragEnabled = true;
+    </script>
+
+<script type="text/javascript">
+	var isDownloadEnabled = false;
+	var throttlePolling = true;
+	var games = [{"id": "local", "title": "Untitled Pulp Game", "modified_date": 0}];
+	var currentGameId = "local";
+    var deletedGames =  'none';
+    //data
+    var datarequest = new XMLHttpRequest();
+   datarequest.open("GET", "games/local/data", false);
+   datarequest.send(null)
+    var data = JSON.parse(datarequest.responseText);
+	
+    var urls = {
+		root: "/",
+		static: "pulp/",
+		shared: "shared/",
+	};
+	var themes = [
+		"Asheville",
+		"Green Age",
+		"Perpetual",
+		"School's Out",
+		"Sunny Day",
+		"Topeka",
+		"White Collar"
+	];
+</script>
+<script src="shared/js/pubsub.js" type="text/javascript" charset="utf-8"></script>
+<script src="shared/js/Local.js" type="text/javascript" charset="utf-8"></script>
+<script src="pulp/js/Voice.js" type="text/javascript" charset="utf-8"></script>
+<script src="pulp/js/ace/ace.js" type="text/javascript" charset="utf-8"></script>
+<script src="pulp/js/ace/ext-language_tools.js" type="text/javascript" charset="utf-8"></script>
+<script src="shared/js/shared.js" type="text/javascript" charset="utf-8"></script>
+<script src="shared/js/jszip.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="pulp/js/pulp.js" type="text/javascript" charset="utf-8"></script>
+<script src="pulp/js/roomSelect.js" type="text/javascript" charset="utf-8"></script>
+
+
+
+
+</head>
+<body class="nojs pulp theme scrollable " data-mode="dark">
+<noscript class="js-warning">
+    <p>
+        
+        <strong>Hello!</strong> Javascript is required for purchasing, signing up for the newsletter, viewing videos, and other content on this page. Please enable Javascript.
+        
+    </p>
+</noscript>
+
+    
+	<div id="compatibility-banner">Playdate Pulp works best in desktop versions of WebKit (eg. Safari or Chrome) <span class="icon clear-search"></span></div>
+    <main id="main" role="main" class="container">
+
+        
+
+        
+
+<fieldset id="non-modal-content">
+<div id="editor-pane" class="pane">
+	<h1 id="logo">Pulp</h1>
+	
+	<div id="editor-modes" class="unit">
+		<ul id="modes" class="icon-list">
+			<li title="Switch to Game mode (1)" aria-label="Switch to Game mode (1)"><span class="icon mode-game"></span> Game</li>
+			<li title="Switch to Font mode (2)" aria-label="Switch to Font mode (2)"><span class="icon mode-font font-type-full"></span> Font</li>
+			<li title="Switch to Room mode (3)" aria-label="Switch to Room mode (3)"><span class="icon mode-room tile-type-world"></span> Room</li>
+			<li title="Switch to Song mode (4)" aria-label="Switch to Song mode (4)"><span class="icon mode-song"></span> Song</li>
+			<li title="Switch to Sound mode (5)" aria-label="Switch to Sound mode (5)"><span class="icon voice-type-noise"></span> Sound</li>
+			<li title="Switch to Script mode (6)" aria-label="Switch to Script mode (6)"><span class="icon mode-script behavior-type-script"></span> Script</li>
+		</ul>
+	</div>
+	
+	<div class="unit">
+		<div id="search-wrap" class="wrap"><input type="text" id="search" aria-label="Search" spellcheck="false" /><span class="icon search"></span><span id="clear-search" class="icon clear-search" title="Clear search" aria-label="Clear search" role="button"></span><div id="search-results"></div><ul id="results-list" class="select-options"></ul></div>
+	</div>
+	
+	<div class="unit">
+		<div class="wrap">
+			<button id="undo" class="has-key-command" title="Undo (⌘+Z)" aria-label="Undo (⌘+Z)">Undo</button>
+			<button id="redo" class="has-key-command" title="Redo (⌘+⇧+Z or ⌘+Y)" aria-label="Redo (⌘+⇧+Z or ⌘+Y)">Redo</button>
+		</div>
+		<div class="wrap">
+			<button id="save" class="has-key-command" title="Save (⌘+S)" aria-label="Save (⌘+S)">Save</button>
+			<button id="play" class="has-key-command" title="Play (⌘+B)" aria-label="Play (⌘+B)">Play</button>
+		</div>
+	</div>
+	
+	<div class="unit">
+		<div class="wrap">
+			<button id="import">Import<input tabindex="-1" type="file" accept=".json" /></button>
+			<button id="export">Export</button>
+		</div>
+		<div class="wrap">
+			<button id="download" class="download-button">Download pdx</button>
+		</div>
+	</div>
+
+	<div class="unit">
+		<h3>Theme</h3>
+		<ol id="theme-select" class="select"></ol>
+	</div>
+	
+	<div class="unit">
+		<h3>Help &amp; Docs</h3>
+		<div id="docs-links">
+			<a href="https://play.date/pulp/docs/" target="docs"><span class="icon doc"></span> Pulp</a>
+			<a href="https://play.date/pulp/docs/pulpscript/" target="docs"><span class="icon doc"></span> PulpScript</a>
+			<a href="https://play.date/pulp/changelog/" target="docs"><span class="icon doc"></span> Changes</a>
+			<a href="https://devforum.play.date/c/pulp/46" target="forum"><span class="icon doc"></span> Forum</a>
+		</div>
+	</div>
+</div>
+
+<div id="mode-game" class="mode">
+	<div id="game-pane" class="pane">
+		<h2>Game</h2>
+		<div class="wrap" id="game-file">&nbsp;</div>
+		
+		<div class="row">
+			<div class="row">
+				<div class="col">
+					<div class="frame"><img id="preview" draggable="false" /></div>
+				</div>
+		
+				<div class="col">
+					<h3 style="margin-top: -4px;"><span id="game-meta-name">Name</span>
+						<button style="float: right;" id="edit-game-script" class="icon behavior-type-script" title="Edit Game Script" aria-label="Edit Game Script">Edit Game Script</button>
+					</h3>
+					<div class="wrap"><input type="text" id="game-name" placeholder="name" autocomplete="off" aria-labelledby="game-meta-name" /></div>
+		
+					<h3 id="game-meta-author">Author</h3>
+					<div class="wrap"><input type="text" id="game-author" placeholder="author" autocomplete="off"  aria-labelledby="game-meta-author" /></div>
+					
+					<h3 id="game-meta-intro">Intro</h3>
+					<div class="wrap"><textarea id="game-intro" class="scrollable" rows="4" placeholder="introduction" aria-labelledby="game-meta-intro"></textarea></div>
+				</div>
+			</div>
+		</div>
+		
+		<div class="row">
+			<div class="col">
+				<h3>Launcher card</h3>
+				<ol class="select" id="game-card-select"></ol>
+				<button id="edit-card-room" class="icon tile-type-world" title="Edit Card Room" aria-label="Edit Card Room">Edit Card Room</button>
+			</div>
+			<div class="col">
+				<h3>Fill</h3>
+				<div id="background-tiles" class="set grid persistent"></div>
+			</div>
+			<div class="col">
+				<h3>Loop</h3>
+				<ol class="select" id="game-song-select"></ol>
+			</div>
+			
+			<div class="col">
+				<h3 id="game-meta-version">Version</h3>
+				<div class="wrap"><input type="text" id="game-version-string" placeholder="version" autocomplete="off" aria-labelledby="game-meta-version-string" /></div>
+			</div>
+			
+			<div class="col">
+				<h3 id="game-meta-build">Build</h3>
+				<div class="wrap"><input type="text" id="game-build" aria-labelledby="game-meta-build" /></div>
+			</div>
+		</div>
+		
+		<div id="assets-pane" class="pane">
+			<div class="clear-fix divider"></div>
+				<h3>Assets</h3>
+				
+				<div class="row">
+					<dl id="assets-game" class="assets-list">
+						<dt>Full game</dt>
+						<dd><button class="doppelganger download-button" data-doppelganger="download">Download pdx</button></dd>
+						<dd>
+							<button class="doppelganger" data-doppelganger="export">Export</button>
+							<button class="doppelganger" data-doppelganger="import">Import</button>
+						</dd>
+					</dl>
+				
+					<dl id="assets-graphics" class="assets-list">
+						<dt>Just font</dt>
+						<dd>
+							<button class="doppelganger" data-doppelganger="export-font">Export</button>
+							<button class="doppelganger" data-doppelganger="import-font">Import</button>
+						</dd>
+				
+						<dt>Just tiles</dt>
+						<dd>
+							<button class="doppelganger" data-doppelganger="export-tiles" data-doppelganger-mode="room">Export</button>
+							<button class="doppelganger" data-doppelganger="import-tiles">Import</button>
+						</dd>
+					</dl>
+				
+					<dl id="assets-audio" class="assets-list">
+						<dt>Audio runtime</dt>
+						<dd><button id="download-audio-runtime">Download bundle</button></dd>
+
+						<dt>Just songs</dt>
+						<dd>
+							<button class="doppelganger" data-doppelganger="export-songs">Export</button>
+							<button class="doppelganger" data-doppelganger="import-songs">Import</button>
+						</dd>
+
+						<dt>Just sounds</dt>
+						<dd>
+							<button class="doppelganger" data-doppelganger="export-sounds">Export</button>
+							<button class="doppelganger" data-doppelganger="import-sounds">Import</button>
+						</dd>
+					</dl>
+				</div>
+			</div>
+		</div>
+	
+		<div id="info-pane" class="pane">
+			<h2>Games</h2>
+		
+			<div class="wrap">
+				<span id="game-actions">
+					<button class="icon new" title="New game" aria-label="New game">New</button><!--
+					--><button class="icon dupe" title="Duplicate this game" aria-label="Duplicate this game">Duplicate</button><!--
+					--><button class="icon delete" title="Delete this game" aria-label="Delete this game">Delete</button>
+				</span>
+			
+				<span id="game-modifiers" class="modifiers">
+					<button class="icon restore" title="Restore a deleted game" aria-label="Restore a deleted game">Restore</button>
+				</span>
+			</div>
+			<div class="group">
+				<div id="games-list"></div>
+			</div>
+		
+		</div>
+	</div>
+</div>
+<div id="mode-room" class="mode">
+	<div id="room-pane" class="pane">
+		<h2>Room</h2>
+		<div class="wrap">
+			<input type="text" id="room-name" placeholder="name" autocomplete="off" />
+			Loop <ol class="select" id="room-song-select"></ol><!--
+			--><span id="room-actions" class="actions">
+				<button class="icon new" title="New room" aria-label="New room">New</button><!--
+				--><button class="icon dupe" title="Duplicate this room" aria-label="Duplicate this room">Duplicate</button><!--
+				--><button class="icon delete" title="Delete this room" aria-label="Delete this room">Delete</button>
+			</span>
+			
+			<span id="room-modifiers" class="modifiers">
+				Rooms <ol class="select" id="room-select"></ol>
+				<button id="toggle-grid" class="icon view-grid" title="Show/hide grid over the room" aria-label="Show/hide grid over the room">Toggle Grid</button><!--
+				--><button id="toggle-walls" class="icon wall" title="Show/hide all walls in this room" aria-label="Show/hide all walls in this room">Toggle Walls</button><!--
+				--><button id="toggle-card" class="icon card" title="Show/hide card mask over the room" aria-label="Show/hide card mask over the room">Toggle Card</button>
+				
+				<button id="edit-room-script" class="icon behavior-type-script" title="Edit Room Script" aria-label="Edit Room Script">Edit Room Script</button>
+			</span>
+		</div>
+
+		<div class="anchor"><div class="pill-stack pill" id="room-tools"></div></div>
+		<div id="room-grid" class="grid" style="position: relative;">
+            <img id="room" draggable="false" />
+            <img id="highlighted-tiles" draggable="false" />
+            <div id="room-tiles-selection-box" class="selection">
+            </div>
+            <img id="room-cursor" class="grid-cursor" draggable="false" />
+            <div id="room-selection-box"
+            style="
+                position: absolute;
+                top: -10px; left: -10px;
+                pointer-events: none;
+            "
+             >
+             <div style="
+                position: absolute;
+                box-shadow: var(--ui-color-playdate-yellow) 0px 0px 0px 2px;
+                z-index: 1;
+                pointer-events: none;
+                width: 100%;
+                height: 100%
+             "></div>
+             <img id="cached-selection-image" />
+            </div>
+        </div>
+		<div class="clear-fix"></div>
+		
+		<div class="row">
+			<div class="col">
+				<h3>Layers</h3>
+				<ul id="layers" class="icon-list">
+					<li><button class="icon toggle-visibility" title="Show/hide exits" aria-label="Show/hide exits">Toggle Visibility</button> <span class="icon tile-type-exit"></span> Exits</li>
+					<li><button class="icon toggle-visibility" title="Show/hide the player" aria-label="Show/hide the player">Toggle Visibility</button> <span class="icon tile-type-player"></span> Player</li>
+					<li><button class="icon toggle-visibility" title="Show/hide sprites" aria-label="Show/hide sprites">Toggle Visibility</button> <span class="icon tile-type-sprite"></span> Sprites</li>
+					<li><button class="icon toggle-visibility" title="Show/hide items" aria-label="Show/hide items">Toggle Visibility</button> <span class="icon tile-type-item"></span> Items</li>
+					<li><button class="icon toggle-visibility" title="Show/hide world tiles" aria-label="Show/hide world tiles">Toggle Visibility</button> <span class="icon tile-type-world"></span> World</li>
+				</ul>
+			</div>
+			<div class="col">
+				<div id="tiles-palette">
+					<h3>Tiles</h3>
+					<div class="wrap export-import">
+						<button id="export-tiles" title="Export tiles" aria-label="Export tiles">Export</button>
+						<button id="import-tiles" title="Import tiles" aria-label="Import tiles">Import<input tabindex="-1" type="file" accept=".png,.zip" multiple="multiple" /></button>
+					</div>
+					<div id="room-tiles" class="set grid persistent"></div>
+					<div id="player-info" class="wrap layer-info">The default Player tile is displayed in game initially. Create additional tiles to simulate different facings or actions and swap them in with PulpScript. Player tiles (and only Player tiles) support transparency.</div>
+					<div id="sprites-info" class="wrap layer-info">Sprites are solid tiles. When the player interacts with one the sprite can say something.</div>
+					<div id="items-info" class="wrap layer-info">Items are not solid tiles. When the player walks over one the item will be collected and can say something.</div>
+					<div id="world-info" class="wrap layer-info">World tiles can be solid or passable. They do not have any special behaviors.</div>
+				</div>
+				<div id="exits-palette">
+					<h3>Exits</h3>
+					<div id="exits-info" class="wrap layer-info">Exits connect to another room or display an ending. Click anywhere to place a new exit. Click an existing exit to select it. Drag an existing exit to move it. After placing or selecting an exit use the Exit palette to change and configure the exit type or delete it.</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div id="tile-pane" class="pane">
+		<h2>Tile</h2>
+		<div class="wrap">
+			<input type="text" id="tile-name" placeholder="name" autocomplete="off" /><!--
+			--><span id="tile-actions" class="actions"><!--
+				--><button class="icon new" title="New tile" aria-label="New tile">New</button><!--
+				--><button class="icon dupe" title="Duplicate this tile (D)" aria-label="Duplicate this tile (D)">Duplicate</button><!--
+				--><button class="icon delete" title="Delete this tile" aria-label="Delete this tile">Delete</button><!--
+			--></span>
+			<button id="highlight-tile" class="icon highlight-tile" title="Toggle tile highlighting" aria-label="Toggle tile highlighting">Toggle Highlighting</button>
+		</div>
+	
+		<div class="anchor"><div class="pill-stack pill" id="tile-tools"></div></div>
+		<div class="grid"><img id="frame" draggable="false" /></div>
+	
+		<div class="group">
+			<span id="tile-type-pill" class="pill"></span><input id="tile-is-solid" type="checkbox" class="icon wall"  title="Toggle wall" aria-label="Toggle wall"/>
+		
+			<span id="tile-modifiers" class="modifiers"><!--
+				--><button class="icon invert" title="Invert this tile (I)" aria-label="Invert this tile (I)">Invert</button><!--
+				--><button class="icon flip-h" title="Flip this tile horizontally (H)" aria-label="Flip this tile horizontally (H)">Flip Horizontal</button><!--
+				--><button class="icon flip-v" title="Flip this tile vertically (V)" aria-label="Flip this tile vertically (V)">Flip Vertical</button><!--
+				--><button class="icon rotate"  title="Rotate this tile (R or Shift+R)" aria-label="Rotate this tile (R or Shift+R)">Rotate</button><!--
+			--></span>
+		</div>
+	
+		<div class="clear-fix divider"></div>
+		
+		<div class="row">
+			<div class="col">
+				<h3>Animation</h3>
+				<div class="frame"><img id="tile-preview"></div>
+				<div class="wrap"><input type="text" id="tile-fps" size="3" /> fps</div>
+			</div>
+			<div class="col">
+				<h3>Frames
+					<span id="frame-actions" class="actions">
+						<button class="icon new" title="New frame" aria-label="New frame">New</button><!--
+						--><button class="icon dupe" title="Duplicate this frame (Shift+D)" aria-label="Duplicate this frame (Shift+D)">Duplicate</button><!--
+						--><button class="icon delete" title="Delete this frame" aria-label="Delete this frame">Delete</button>
+					</span>
+				</h3>
+				<div id="tile-frames" class="set grid persistent"></div>
+			</div>
+		</div>
+
+		<div id="behavior">
+			<div class="clear-fix divider"></div>
+	
+			<h3>Behavior
+				<span id="behavior-type-pill" class="pill"><!--
+					--><input type="radio" name="behavior-type-radio" value="0" class="icon behavior-type-simple" title="Says" aria-label="Says" /><!--
+					--><input type="radio" name="behavior-type-radio" value="1" class="icon behavior-type-script" title="PulpScript" aria-label="PulpScript" /><!--
+				--></span>
+			</h3>
+	
+			<div id="behavior-simple">
+				<div id="behavior-modifiers" class="modifiers">
+					<span id="behavior-sound">Play <ol class="select" id="behavior-sound-select"></ol></span>
+				</div>
+				<div class="wrap"><textarea id="tile-says" class="scrollable" rows="4" placeholder="Says"></textarea></div>
+			</div>
+			<div id="behavior-script">
+				<div id="tile-script-editor"></div>
+			</div>
+		</div>
+	</div>
+
+	<div id="exit-pane" class="pane">
+		<h2>Exit</h2>
+
+		<div class="wrap">
+			<span id="exit-type-pill" class="pill"><!--
+				--><input type="radio" name="exit-type-radio" value="0" class="icon exit-type-room" title="Connect to room" aria-label="Connect to room" /><!--
+				--><input type="radio" name="exit-type-radio" value="2" class="icon exit-type-edge" title="Connect room edges" aria-label="Connect room edges" /><!--
+				--><input type="radio" name="exit-type-radio" value="1" class="icon exit-type-fin" title="Show ending" aria-label="Show ending" /><!--
+			--></span>
+			<span id="exit-actions" class="actions"><button class="icon delete" title="Delete this exit" aria-label="Delete this exit">Delete</button></span>
+			
+		</div>
+
+		<div id="exit-connection">
+			<div class="grid small"><img id="exit-room" draggable="false" /><img id="exit-cursor" class="grid-cursor" draggable="false" /></div>
+			<div class="wrap">
+				Connects to <ol class="select" id="exit-select"></ol> <button id="edit-room">Open</button>
+			</div>
+		</div>
+		<div id="exit-ending">
+			<div class="wrap"><textarea id="exit-says" class="scrollable" rows="4" placeholder="Says"></textarea></div>
+			Loop <ol class="select" id="exit-song-select"></ol>
+		</div>
+	</div>
+</div>
+<div id="mode-font" class="mode">
+	<div id="font-pane" class="pane">
+		<h2>Font</h2>
+		
+		<div class="wrap">
+			<span id="font-type-pill" class="pill"><!--
+				--><input type="radio" name="font-type-radio" value="0" class="icon font-type-half" title="Half-width font" aria-label="Half-width font" /><!--
+				--><input type="radio" name="font-type-radio" value="1" class="icon font-type-full" title="Full-width font" aria-label="Full-width font" /><!--
+			--></span>
+				
+				<button id="export-font" title="Export font" aria-label="Export font">Export</button>
+				<button id="import-font" title="Import font" aria-label="Import font">Import<input tabindex="-1" type="file" accept=".png" /></button>
+			
+			<span id="font-modifiers" class="modifiers">
+				<button class="icon clear" title="Clear all tiles in this font" aria-label="Clear all tiles in this font">Clear</button><!--
+				--><button class="icon invert" title="Invert all tiles in this font (Shift+I)" aria-label="Invert all tiles in this font (Shift+I)">Invert</button>
+			</span>
+		</div>
+		
+		<div class="anchor">
+			<div class="blind" id="font-blind-1"></div>
+			<div class="blind" id="font-blind-2"></div>
+			<div class="blind" id="font-blind-3"></div>
+			<div class="blind" id="font-blind-4"></div>
+		</div>
+		<div class="frame"><img id="font" draggable="false" /></div>
+
+		<div class="clear-fix"></div>
+		
+		<div class="row">
+			<div id="pipe-col" class="col">
+				<h3>UI</h3>
+				<div id="pipe-tiles" class="set grid persistent"></div>
+				<h3></h3>
+				<div id="arrow-tiles" class="set grid persistent"></div>
+			</div>
+			<div class="col">
+				<div id="chars-palette">
+					<h3>Chars</h3>
+					<div id="char-tiles" class="set grid persistent"></div>
+				</div>
+			</div>
+		</div>
+		
+	</div>
+	<div id="char-pane" class="pane">
+		<h2 id="char-type">Char</h2>
+		<pre id="char-name">A</pre>
+		
+		<div class="anchor"><div class="pill-stack pill" id="char-tools"></div></div>
+		<div class="grid persistent"><img id="char" draggable="false" /></div>
+		
+		<div class="group">
+			<span class="shim"></span>
+			
+			<span id="char-modifiers" class="modifiers">
+				<button class="icon clear" title="Clear this char" aria-label="Clear this char">Clear</button><!--
+				--><button class="icon invert" title="Invert this tile (I)" aria-label="Invert this tile (I)">Invert</button>
+			</span>
+		</div>
+		
+		<div class="clear-fix divider"></div>
+		
+		<h3>Sample Text
+			<span id="font-text-pill" class="pill"><!--
+				--><input type="radio" name="font-text-radio" value="0" class="icon font-text-alphanum" title="Preview all characters" aria-label="Preview all characters" /><!--
+				--><input type="radio" name="font-text-radio" value="1" class="icon font-text-pangram" title="Preview pangram sentence" aria-label="Preview pangram sentence" /><!--
+				--><input type="radio" name="font-text-radio" value="2" class="icon font-text-custom"  title="Preview custom test" aria-label="Preview custom test" /><!--
+			--></span>
+		</h3>
+		<textarea id="custom-text" class="scrollable" rows="4"></textarea>
+	</div>
+</div>
+<div id="mode-song" class="mode">
+	<div id="song-pane" class="pane">
+		<h2>Song</h2>
+		<div class="wrap" style="position:relative;">
+			<input type="text" id="song-name" placeholder="name" autocomplete="off">
+			<input type="text" id="song-bpm" placeholder="120" size="3" autocomplete="off"> bpm
+			<span id="song-actions" class="actions">
+				<button class="icon new" title="New song" aria-label="New song">New</button><!--
+				--><button class="icon dupe" title="Duplicate this song" aria-label="Duplicate this song">Duplicate</button><!--
+				--><button class="icon delete" title="Delete this song" aria-label="Delete this song">Delete</button>
+			</span>
+			
+			<span id="playhead-actions" class="actions" style="position: absolute; left: 50%;">
+				<button id="split-part" class="icon split" title="Split part at playhead (V)" aria-label="Split part at playhead (V)">Split</button><!--
+				--><button id="join-parts" class="icon join" title="Join selected parts (B)" aria-label="Join parts at playhead (B)">Join</button><!--
+				--><button id="loop-from" class="icon loopback" title="Set loop point at playhead (M)" aria-label="Set loop point at playhead (M)">Loop from</button>
+			</span>
+			
+			<span id="song-modifiers" class="modifiers">
+				Songs <ol class="select" id="song-select"></ol>
+				<span id="shared-modifiers" class="modifiers">
+					<label id="shared-volume" title ="Editor volume"><button id="button-mute" class="icon mute" title="Toggle Mute">Mute</button> <input id="volume" type="range" min=0 max=100 value=50 /></label>
+					<button id="toggle-loop" class="icon loop" title="Loop song continuously in editor (R)" aria-label="Loop song continuously in editor (R)">Toggle Loop</button><!--
+					--><button id="toggle-play" class="icon play" title="Play/pause (space)" aria-label="Play/pause (space)">Toggle Play</button><!--
+					--><button id="playhead-return" class="icon return" title="Return playhead (return)" aria-label="Return playhead (return)">Return Playhead</button>
+				</span>
+			</span>
+		</div>
+		
+		<div class="anchor"><div class="pill-stack pill" id="song-tools"></div></div>
+		<div id="song-frame" class="frame row">
+			<div id="song-voices">
+				<h3>Arrangement</h3>
+				<ul class="voice-list"></ul>
+			</div>
+			<div class="outer">
+				<div class="grid-song song-notes" id="song-notes-track"><div id="song-notes">Notes</div></div>
+				<div class="grid-song song-playhead" id="song-playhead-track"><div id="song-intro">Intro</div></div>
+				<div class="outer">
+					<div class="grid persistent inner"><img id="song-image" draggable="false" /><div id="song-parts" class="song-parts"></div></div>
+					<div id="song-playhead" class="playhead"></div>
+				</div>
+			</div>
+		</div>
+		
+		<div class="clear-fix"></div>
+		
+		<div class="row">
+			<div id="voice-pane" class="col voice-pane">
+				<h3>Voice</h3>
+				
+				<div class="wrap" id="voice-name">
+					<span class="icon voice-type-sine"></span> <span class="name">Sine</span>
+				</div>
+				
+				<div id="song-envelope-container">
+					<div id="shared-envelope">
+						<div class="wrap">
+							<label title="Volume" aria-label="Volume"><input id="voice-volume"  type="text" size="3"> Volume</label>
+						</div>
+				
+						<div class="wrap" id="voice-envelope">
+							<label title="Attack (duration in seconds)" aria-label="Attack (duration in seconds)"><input id="voice-attack"  type="text" size="3"> Attack</label>
+							<label title="Decay (duration in seconds)" aria-label="Decay (duration in seconds)"><input id="voice-decay"   type="text" size="3"> Decay</label>
+							<label title="Sustain (relative to Volume)" aria-label="Sustain (relative to Volume)"><input id="voice-sustain" type="text" size="3"> Sustain</label>
+							<label title="Release (duration in seconds)" aria-label="Release (duration in seconds)"><input id="voice-release" type="text" size="3"> Release</label>
+						</div>
+				
+						<div class="wrap">
+							<button id="reset-voice-envelope">Reset</button>
+						</div>
+					</div>
+				</div>
+				
+				<div id="songs-modifier">
+					<h3>Songs</h3>
+					<div class="wrap">
+						<button id="export-songs" title="Export songs" aria-label="Export songs">Export</button>
+						<button id="import-songs" title="Import songs" aria-label="Import songs">Import<input tabindex="-1" type="file" accept=".json" /></button>
+					</div>
+				</div>
+			</div>
+			<div class="col">
+				<h3>Notes</h3>
+				
+				<span id="notes-modifiers" class="modifiers">
+					<button id="toggle-loop-notes" class="icon loop" title="Loop visible notes continuously in editor (Shift+R)" aria-label="Loop visible notes continuously in editor (Shift+R)">Toggle Loop</button>
+				</span>
+				
+				<div id="song-notes-container">
+					<div id="shared-notes">
+						<div class="anchor"><div class="pill-stack pill" id="notes-tools"></div></div>
+						<div class="frame"><div class="outer"><div class="grid persistent grid-notes inner"><img id="notes-image" draggable="false" /><img id="notes-cursor" class="grid-cursor" draggable="false" /></div><div id="notes-selection" class="selection"></div><div id="notes-playhead" class="playhead"></div></div></div>
+				
+						<div class="row">
+							<div id="note" class="note-meta row">
+								<div class="col" title="Change pitch (up/down)">
+									<h4>Note</h4>
+									<span class="stepper" id="note-pitch-stepper"><button class="icon stepper-button step-left" aria-label="Lower pitch">-</button><span class="stepper-value" id="note-pitch">C</span><button class="icon stepper-button step-right" aria-label="Raise pitch">+</button></span>
+								</div>
+								<div class="col" title="Change octave (shift+up/shift+down)">
+									<h4>Octave</h4>
+									<span class="stepper" id="note-octave-stepper"><button class="icon stepper-button step-left" aria-label="Lower octave">-</button><span class="stepper-value" id="note-octave">4</span><button class="icon stepper-button step-right" aria-label="Lower octave">+</button></span>
+								</div>
+								<div class="col" title="Change duration (shift+left/shift+right)">
+									<h4>Hold</h4>
+									<span class="stepper" id="note-hold-stepper"><button class="icon stepper-button step-left" aria-label="Reduce duration">-</button><span class="stepper-value" id="note-hold">1</span><button class="icon stepper-button step-right" aria-label="Increase	 duration">+</button></span> 8th notes
+								</div>
+							</div>
+							
+							<div id="piano">
+								<div class="piano-keys"></div>
+								<div class="octaves" title="Change octave with Z/X" aria-label="Change octave with Z/X">
+									<div id="base-octave" class="octave">C4</div><div id="plus-octave" class="octave">C5</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<div id="mode-sound" class="mode">
+	<div id="sound-pane" class="pane">
+		<h2>Sound</h2>
+		
+		<div class="wrap" style="position:relative;">
+			<input type="text" id="sound-name" placeholder="name" autocomplete="off">
+			<input type="text" id="sound-bpm" placeholder="120" size="3" autocomplete="off"> bpm
+			<span id="sound-actions" class="actions">
+				<button class="icon new" title="New song" aria-label="New song">New</button><!--
+				--><button class="icon dupe" title="Duplicate this sound effect" aria-label="Duplicate this sound effect">Duplicate</button><!--
+				--><button class="icon delete" title="Delete this sound effect" aria-label="Delete this sound effect">Delete</button>
+			</span>
+			
+			<span id="sound-modifiers" class="modifiers">
+				Sounds <ol class="select" id="sound-select"></ol>
+			</span>
+		</div>
+		
+		<div id="sound-notes-container"></div>
+	</div>
+	
+	<div id="sound-voice-pane" class="voice-pane">
+		<h3>&nbsp;</h3><!-- ack -->
+		<h4>Voice</h4>
+		
+		<span id="voice-type-pill" class="pill"></span>
+		
+		<div id="sound-envelope-container"></div>
+		
+		<div id="sounds-modifier">
+			<h3>Sounds</h3>
+			<div class="wrap">
+				<button id="export-sounds" title="Export sounds" aria-label="Export sounds">Export</button>
+				<button id="import-sounds" title="Import sounds" aria-label="Import sounds">Import<input tabindex="-1" type="file" accept=".json" /></button>
+			</div>
+		</div>
+	</div>
+</div>
+<div id="mode-script" class="mode">
+	<div id="script-pane" class="pane">
+		<h2>Script</h2>
+		<div class="wrap">
+			<span id="script-name">Name</span>
+			<span id="script-actions" class="actions"><button class="icon delete" title="Delete this script" aria-label="Delete this script">Delete</button></span>
+		</div>
+		<div id="script-script-editor">
+			<div id="shared-editor">
+				<div id="script-modifiers" class="modifiers">
+					<span id="script-events"><span id="script-events-label">Events</span> <ol class="select" id="script-events-select"></ol></span>
+					<button id="goto-game" class="icon mode-game" title="Go to Game" aria-label="Go to Game">Go to Game</button>
+					<button id="goto-room" class="icon tile-type-world" title="Go to Room" aria-label="Go to Room">Go to Room</button>
+					<button id="goto-tile" class="icon wall" title="Go to Tile" aria-label="Go to Tile">Go to Tile</button>
+				</div>
+				<div class="script-editor"><div id="script-editor"></div></div>
+				<div id="script-status" class="script-status"></div>
+			</div>
+		</div>
+	</div>
+	
+	<div id="scripts-pane" class="pane">
+		<h2>Sources</h2>
+		<ol class="select" id="script-select"></ol>
+		
+		<div id="recent-scripts">
+			<h2>Recently Used</h2>
+			<ul id="recent-list" class="icon-list"></ul>
+		</div>
+	</div>
+</div>
+
+</fieldset>
+
+<div id="overlay">
+	<input id="input-focus" tabindex="-1" />
+	<div id="overlay-window">
+		<!-- generic overlays -->
+		<div id="overlay-content-alert" class="overlay-content">
+			<div id="overlay-alert-message"></div>
+
+			<div class="button-row">
+				<button class="button-overlay-confirm" id="button-alert-ok">OK</button>
+			</div>
+		</div>
+		
+		<div id="overlay-content-confirm" class="overlay-content">
+			<div id="overlay-confirm-message"></div>
+
+			<div class="button-row">
+				<button class="button-overlay-cancel">Cancel</button>
+				<button class="button-overlay-confirm" id="button-confirm-ok">OK</button>
+			</div>
+		</div>
+		
+		<div id="overlay-content-prompt" class="overlay-content">
+			<div id="overlay-prompt-message"></div>
+			
+			<label><input type="text" id="overlay-prompt-value" autocomplete="off" placeholder="name" /></label>
+
+			<div class="button-row">
+				<button class="button-overlay-cancel">Cancel</button>
+				<button class="button-overlay-confirm" id="button-prompt-ok">OK</button>
+			</div>
+		</div>
+		
+		<!-- custom overlays -->
+		<div id="overlay-content-restore" class="overlay-content">
+			<h3>Restore</h3>
+			<ul id="deleted-games" class="icon-list"></ul>
+			<div class="button-row">
+				<button class="button-overlay-confirm" id="button-restore-cancel">Nevermind</button>
+			</div>
+		</div>
+		
+		<div id="overlay-content-conflict" class="overlay-content">
+			<h3>Modifiction date conflict</h3>
+			<p>The copy of this game on the server has been modified since it was loaded in the editor. Saving will replace that version with your local copy. What do you want to do with your local changes?</p>
+			<div class="button-row">
+				<button class="button-overlay-confirm button-overlay-cancel" id="button-conflict-cancel">Nothing</button>
+				<button id="button-conflict-discard">Discard</button>
+				<button id="button-conflict-save">Save</button>
+			</div>
+		</div>
+		
+		<div id="overlay-content-export" class="overlay-content">
+			<h3>Export tiles</h3>
+			<div class="button-row">
+				<ol id="export-tiles-select" class="select">
+					<li data-value="all">All tiles</li>
+					<li data-value="layer">Current layer</li>
+					<li data-value="tile">Current tile</li>
+				</ol>
+				<button class="button-overlay-cancel">Cancel</button>
+				<button class="button-overlay-confirm" id="button-export-tiles">Export</button>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+
+    </main>
+    
+
+    
+<footer id="custom-footer">
+	<ul>
+		<li>
+			Inspired by <a href="https://bitsy.org/" target="_blank">bitsy</a>.
+		</li>
+	</ul>
+</footer>
+<footer id="panic-footer">
+    <ul>
+        <li>
+            &copy; Panic
+        </li>
+        <li>
+            Playdate is a registered trademark of Panic
+        </li>
+    </ul>
+</footer>
+
+
+
+
+
+    <script type="text/javascript">
+        // Generate the static url here and pass it as a JS var so scripts can use it as a prefix.
+        var STATIC_URL = "//";
+    </script>
+    <script src="js/init.js"></script>
+</body>
+</html>

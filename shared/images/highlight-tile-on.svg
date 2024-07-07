@@ -1,0 +1,25 @@
+<svg id="locate-tile-on.svg" xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 28 28">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #b1aea8;
+        opacity: 0.1;
+      }
+
+      .cls-1, .cls-2, .cls-3 {
+        fill-rule: evenodd;
+      }
+
+      .cls-2, .cls-3 {
+        fill: #33332c;
+      }
+
+      .cls-2 {
+        opacity: 0.4;
+      }
+    </style>
+  </defs>
+  <path id="sizer" class="cls-1" d="M151,265h0.094v0.094H151V265Zm27.906,27.906H179V293h-0.094v-0.094Z" transform="translate(-151 -265)"/>
+  <path class="cls-2" d="M176,287l-11-4-11,4,9.575-19a1.613,1.613,0,0,1,1.432-.8,1.583,1.583,0,0,1,1.433.8Z" transform="translate(-151 -265)"/>
+  <path class="cls-3" d="M154,287l11-4,11,4-11,4Z" transform="translate(-151 -265)"/>
+</svg>

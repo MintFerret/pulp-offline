@@ -1,0 +1,25 @@
+<svg id="invert.svg" xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 28 28">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #b1aea8;
+        opacity: 0.1;
+      }
+
+      .cls-1, .cls-2, .cls-3 {
+        fill-rule: evenodd;
+      }
+
+      .cls-2, .cls-3 {
+        fill: #33332c;
+      }
+
+      .cls-2 {
+        opacity: 0.4;
+      }
+    </style>
+  </defs>
+  <path id="sizer" class="cls-1" d="M321,118h0.094v0.094H321V118Zm27.906,27.906H349V146h-0.094v-0.094Z" transform="translate(-321 -118)"/>
+  <path class="cls-2" d="M323,144V120h24v24H323Zm22-22H325v20h20V122Z" transform="translate(-321 -118)"/>
+  <path class="cls-3" d="M335,140V124A8,8,0,0,1,335,140Zm-8-8a8,8,0,0,0,8,8v4H323V120h12v4A8,8,0,0,0,327,132Z" transform="translate(-321 -118)"/>
+</svg>

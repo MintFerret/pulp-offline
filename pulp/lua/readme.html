@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<title>Playdate Pulp Audio Runtime</title>
+<style>
+body {
+	font: 16px/24px sans-serif;
+	margin: 4em auto;
+	width: 60ch;
+}
+pre,code {
+	color: #333;
+	background-color: #eee;
+}
+pre {
+	border-radius: 8px;
+	padding: 1em;
+}
+strong code {
+	white-space: nowrap;
+}
+footer {
+	margin-top: 4em;
+	font-size: 12px;
+	line-height: 18px;
+	color: #666;
+	text-align: center;
+}
+a.goto {
+	text-decoration: none;
+	color: inherit;
+}
+</style>
+</head>
+<body>
+<h1 id="goto-pulp-audio-runtime"><a class="goto" href="#goto-pulp-audio-runtime">Pulp Audio Runtime</a></h1>
+
+<p>Building a <a href="https://play.date/">Playdate</a> game in Lua and want to take advantage of <a href="https://play.date/pulp/">Pulp</a>&#8217;s audio authoring tools? The Pulp audio runtime is a small Lua library that lets you do just that.</p>
+
+<h2 id="goto-one-time-setup"><a class="goto" href="#goto-one-time-setup">One-time setup</a></h2>
+
+<p>Download the audio runtime bundle from the Assets pane of Game mode in the Pulp editor. Unzip and copy the Lua file and two json files into the root of your project&#8217;s Lua source folder.</p>
+
+<p>Add <code>import 'pulp-audio'</code> to your main.lua and call <code>pulp.audio.init()</code> once. Then call <code>pulp.audio.update()</code> once per frame inside <code>playdate.update()</code>.</p>
+
+<h2 id="goto-updating-song-and-sound-data"><a class="goto" href="#goto-updating-song-and-sound-data">Updating song and sound data</a></h2>
+
+<p>Export the updated data from the individual Song or Sound modes in the Pulp editor (or download the bundle again from the Game mode) and replace the existing json files in your project with updated versions. Rebuild your game.</p>
+
+<h2 id="goto-api"><a class="goto" href="#goto-api">API</a></h2>
+
+<p><strong><code>pulp.audio.init(songsPath, soundsPath)</code></strong></p>
+
+<p>The <code>songsPath</code> and <code>soundsPath</code> arguments are both optional. Paths are relative to the root of your Lua source folder. Their respective default values are <code>pulp-songs.json</code> and <code>pulp-sounds.json</code>.</p>
+
+<p><strong><code>pulp.audio.update()</code></strong></p>
+
+<p>Call once per frame to keep the audio data flowing.</p>
+
+<p><strong><code>pulp.audio.playSound(soundName)</code></strong></p>
+
+<p>Play a sound effect by name.</p>
+
+<p><strong><code>pulp.audio.playSong(songName, playOnce, onCompleteCallback)</code></strong></p>
+
+<p>Play a song by name. By default it will loop indefinitely. To play a song once and stop, pass <code>pulp.audio.kPlayOnce</code> (or <code>true</code>) as the optional second argument. When playing once, pass a function as the optional third argument, and it will be called when the song stops. If the song is already playing it will continue to play uninterrupted.</p>
+
+<p><strong><code>pulp.audio.stopSong()</code></strong></p>
+
+<p>Stops the currently playing song.</p>
+
+<p><strong><code>pulp.audio.setBpm(newBpm)</code></strong></p>
+
+<p>Change the bpm of the currently playing song. When starting a new song, the bpm reverts to the authored bpm of the new song.</p>
+
+<h2 id="goto-example-main-lua"><a class="goto" href="#goto-example-main-lua">Example main.lua</a></h2>
+
+<p>This example features two songs named &#8220;intro&#8221; and &#8220;loop&#8221;, and one sound named &#8220;confirm&#8221;. It imports and initializes the Pulp audio runtime, then plays &#8220;intro&#8221; once then loops &#8220;loop&#8221;. Inside the Playdate update callback it updates the runtime, and plays the &#8220;confirm&#8221; sound when A is pressed and
+restarts our &#8220;intro&#8221; into &#8220;loop&#8221; song combo when B is pressed. (Note that individual Pulp songs can have a loop point after a short intro. This is a contrived example to surface more of the API.)</p>
+
+<pre><code>import 'pulp-audio'
+
+pulp.audio.init()
+
+local once = pulp.audio.kPlayOnce
+
+pulp.audio.playSong('intro', once, function()
+    pulp.audio.playSong('loop')
+end)
+
+function playdate.update()
+    pulp.audio.update()
+
+    if playdate.buttonJustPressed('a') then
+        pulp.audio.playSound('confirm')
+    end
+
+    if playdate.buttonJustPressed('b') then
+        pulp.audio.playSong('intro', once, function()
+            pulp.audio.playSong('loop')
+        end)
+    end
+end
+</code></pre>
+
+<footer>
+	© Panic
+	<a href="https://play.date/">Playdate</a> is a registered trademark of <a href="https://panic.com/">Panic</a>
+</footer>
+<script>document.getElementById('year').innerHTML = (new Date).getFullYear();</script>
+</body>
+</html>
