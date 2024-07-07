@@ -1,3 +1,3 @@
-#Playdate Pulp Editor
+##Playdate Pulp Editor
 
 Text goes here
