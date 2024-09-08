@@ -1,0 +1,12 @@
+{
+  "name": "pulpoffline",
+  "main": "index.html",
+  "icon": "favicon.ico",
+  "window": {
+    "title": "Pulp Offline",
+    "icon": "favicon.ico",
+    "toolbar": false,
+    "width": 1000,
+    "height": 700
+  }
+}
