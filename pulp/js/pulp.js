@@ -1002,7 +1002,7 @@ var recoveredUnsavedData = false;
 function pollMeta(callback) { // callback(localGame, remoteGame)
 	scheduleAutoPoll();
 	var localGame = games[indexOfGameId(currentGameId)];
-	Local.get(urls.root + 'games/' + currentGameId + '/meta/', function(text, status) {
+	Local.get(urls.root + 'pulp/games/' + currentGameId + '/meta/', function(text, status) {
 		// TODO: replace with if (status==401)
 		if (text.indexOf('{')!=0 && text.indexOf('type="password"')!=-1) { 
 			// session timed out
@@ -1027,11 +1027,11 @@ function pollMeta(callback) { // callback(localGame, remoteGame)
 		
 		isDownloadEnabled = remoteGame.is_download_enabled;
 		one('body').classList.toggle('enable-downloads', isDownloadEnabled);
-		
+		/* //ignore
 		if (localGame.modified_date<remoteGame.modified_date) {
 			return showOverlay('conflict');
 		}
-		else if (callback) {
+		else */ if (callback) {
 			callback(localGame,remoteGame);
 		}
 	});
@@ -1047,6 +1047,7 @@ function reloadGamesList(callback) {
 var afterSave = null;
 var gameNameChanged = false;
 function doSave(localGame, remoteGame, callback) {
+	
 	if (gameNameChanged) {
 		var gameName = data.name;
 		var gameId = currentGameId;
@@ -1064,12 +1065,11 @@ function doSave(localGame, remoteGame, callback) {
 		return;
 	}
 	afterSave = callback;
-	Local.put(urls.root + 'games/' + currentGameId + '/data/', JSON.stringify(data), function(text, status) {
+	Local.put(urls.root + 'pulp/games/' + currentGameId + '/data/', JSON.stringify(data), function(text, status) {
 		if (status==500) return showAlert("Unable to save game.");
 		
-		var remoteGame = JSON.parse(text);
-		games[indexOfGameId(localGame.id)] = remoteGame;	
-		
+		//var remoteGame = JSON.parse(text);
+		//games[indexOfGameId(localGame.id)] = remoteGame;	
 		if (afterSave) {
 			afterSave();
 			afterSave = null;
@@ -9156,7 +9156,7 @@ function onDataReady() {
 	function openPlayer() {
 		stopPlayback();
 		function openPlayerNow() {
-			window.open(urls.root + currentGameId + '/play/', 'player');
+			window.open(urls.root + 'pulp/' + currentGameId + '/play/' + 'index.html', 'player');
 		}
 		
 		if (isDirty) {

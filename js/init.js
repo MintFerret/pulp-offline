@@ -1,5 +1,6 @@
 var body = document.body;
 body.classList.remove('nojs');
+tray.remove() 
 
 //! Detect reduced motion
 var fullMotion = false;

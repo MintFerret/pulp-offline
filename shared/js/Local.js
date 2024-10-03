@@ -1,3 +1,4 @@
+
 var Local = (function() {
 	var L = {};
 	
@@ -29,10 +30,15 @@ var Local = (function() {
 	};
 	L.put = function(path, data, callback) {
 		var xhr = new XMLHttpRequest();
+		var fs = require('fs'); //optional for writeFile, a Node.js library
+		fs.appendFileSync(process.cwd() + path, data, {encoding:'utf8',flag:'w'}, callback)
+		{
 		if (callback) {
 			xhr.addEventListener('load', function() {
+				console.log(path, data)
 				callback(this.responseText, this.status);
 			});
+		}
 		}
 		xhr.open('POST', path);
 	    xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');

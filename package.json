@@ -5,8 +5,11 @@
   "window": {
     "title": "Pulp Offline",
     "icon": "favicon.ico",
-    "toolbar": false,
+    "toolbar": true,
     "width": 1000,
     "height": 700
+  },
+  "dependencies": {
+    "fs": "^0.0.1-security"
   }
 }
