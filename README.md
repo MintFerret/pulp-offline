@@ -1,11 +1,12 @@
 # Playdate Pulp Editor
 
-This repo contains some of the code for the [Playdate Pulp](https://playdate-wiki.com/wiki/Pulp) editor with some modifications for offline use. Some features related to writing data (like saving, creating and deleting projects) won't work but you can still edit your project without any problems.
+This repo contains some of the code for the [Playdate Pulp](https://playdate-wiki.com/wiki/Pulp) editor with some modifications for offline use. Some features related creating and deleting projects won't work but you can still edit your project without any problems.
 
 ![screenshot](https://github.com/MintFerret/playdate-pulp-editor/blob/master/screenshot.png?raw=true)
 
 # Limitations
-- **Saving doesn't work (you have to do it manually by exporting your JSON and overwriting it with `games/local/data`)**
+- ~**Saving doesn't work (you have to do it manually by exporting your JSON and overwriting it with `games/local/data`)**~
+  Not anymore! You can now click on the save button as many times as you want (Still recommended to make backups, just in case)
 - Only one game can be edited at once
 - Creating and deleting games doesn't work
 
