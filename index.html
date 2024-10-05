@@ -18,15 +18,15 @@
 <script type="text/javascript">
 	var isDownloadEnabled = false;
 	var throttlePolling = true;
-	var games = [{"id": "local", "title": "Untitled Pulp Game", "modified_date": 0}];
+	var games = [{"id": "local", "title": "Current Pulp Game", "modified_date": 0}];
 	var currentGameId = "local";
     var deletedGames =  'none';
     //data
+
     var datarequest = new XMLHttpRequest();
    datarequest.open("GET", "games/local/data", false);
    datarequest.send(null)
     var data = JSON.parse(datarequest.responseText);
-	
     var urls = {
 		root: "/",
 		static: "pulp/",
